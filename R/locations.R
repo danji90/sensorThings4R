@@ -4,13 +4,13 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
-#'x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
+#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
 #'x
 
 senseLocations = function (url){
   locationsExt = "Locations"
   locUrl = paste0(url,locationsExt)
-  locJSON = fromJSON(locUrl)
+  locJSON = jsonlite::fromJSON(locUrl)
   locations = locJSON$value
   return(locations)
 }

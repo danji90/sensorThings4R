@@ -8,7 +8,6 @@
 #'x
 
 locationLeaflet = function(locDf){
-  map <- leaflet(data=locDf) %>%
-    addTiles() %>% addMarkers(~long, ~lat, popup = ~as.character(name), clusterOptions = markerClusterOptions())
+  map <- leaflet::leaflet(data=locDf) %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(name), clusterOptions = leaflet::markerClusterOptions())
   return(map)
   }
