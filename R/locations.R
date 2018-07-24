@@ -9,6 +9,9 @@
 #'
 #'v = senseLocations("https://tasking-test.sensorup.com/v1.0/")
 #'v
+#'
+#'a = senseLocations("http://example.sensorup.com/v1.0/")
+#'a
 
 senseLocations = function (url){
   locationsExt = "Locations"
@@ -54,12 +57,12 @@ locToDf = function(locationDF){
 #' @return Object of class "track"
 #' @export
 #' @examples
-#'dataPath <- system.file("extdata", "data_pm10.csv", package="tracks4r")
+#'map1 = thingsToMap("https://tasking-test.sensorup.com/v1.0/")
+#'map1
 #'
-#'x = readTrack(dataPath)
-#'
-#'class(x)
-#'
+#'map2 = thingsToMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'map2
+
 
 thingsToMap = function(url){
   x = senseLocations(url)

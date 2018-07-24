@@ -16,10 +16,9 @@ Object of class "track"
 Reads table format .txt files
 }
 \examples{
-dataPath <- system.file("extdata", "data_pm10.csv", package="tracks4r")
+map1 = thingsToMap("https://tasking-test.sensorup.com/v1.0/")
+map1
 
-x = readTrack(dataPath)
-
-class(x)
-
+map2 = thingsToMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+map2
 }

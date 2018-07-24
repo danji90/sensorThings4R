@@ -18,4 +18,7 @@ x
 
 v = senseLocations("https://tasking-test.sensorup.com/v1.0/")
 v
+
+a = senseLocations("http://example.sensorup.com/v1.0/")
+a
 }
