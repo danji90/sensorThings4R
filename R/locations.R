@@ -6,6 +6,9 @@
 #' @examples
 #'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
 #'x
+#'
+#'v = senseLocations("https://tasking-test.sensorup.com/v1.0/")
+#'v
 
 senseLocations = function (url){
   locationsExt = "Locations"
@@ -18,9 +21,7 @@ senseLocations = function (url){
 #' @title Create Track Object
 
 #' @description Reads table format .txt files
-#' @param input Path or URL to input file
-#' @param headerBool Boolean value for presence of header in the file
-#' @param sepStr String of the separator character (e.g. ",")
+#' @param locationDF Path or URL to input file
 #' @return Object of class "track"
 #' @export
 #' @examples
@@ -44,4 +45,25 @@ locToDf = function(locationDF){
   loc_array$long = as.numeric(loc_array$long)
   loc_array$lat = as.numeric(loc_array$lat)
   return(loc_array)
+}
+
+#' @title Directly plot thing locations to map
+
+#' @description Reads table format .txt files
+#' @param url Path or URL to input file
+#' @return Object of class "track"
+#' @export
+#' @examples
+#'dataPath <- system.file("extdata", "data_pm10.csv", package="tracks4r")
+#'
+#'x = readTrack(dataPath)
+#'
+#'class(x)
+#'
+
+thingsToMap = function(url){
+  x = senseLocations(url)
+  y = locToDf(x)
+  z = locationLeaflet(y)
+  return(z)
 }
