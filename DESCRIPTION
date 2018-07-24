@@ -1,0 +1,13 @@
+Package: sensorThings4R
+Type: Package
+Title: R package for Reading and Visualising SensorThingsAPI Data
+Version: 0.1.0
+Author: Daniel Marsh-Hunn
+Maintainer: Daniel Marsh-Hunn <al373405@uji.es>
+Description: SensorThings4R contains a set of functions to easily access, process and visualise data from APIs 
+using the OGC sensor web standard SensorThings.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports:jsonlite, leaflet
+Suggests: knittr
