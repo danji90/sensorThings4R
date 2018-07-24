@@ -1,13 +1,11 @@
 #' @title Loads location data from any SensorThings API
 #' @description
 #' @param url The SensorThings API url containing the data in SensorThings web standard in string(!) format
-#' @return A list object containing information from url/Things
+#' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
 #'x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
 #'x
-#'
-#'
 
 senseLocations = function (url){
   locationsExt = "Locations"
