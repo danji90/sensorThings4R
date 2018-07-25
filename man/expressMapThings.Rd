@@ -16,9 +16,9 @@ Object of class "track"
 Uses senseLocations(), makeThingLocation() and mapThings
 }
 \examples{
-map1 = expressMapThings("https://tasking-test.sensorup.com/v1.0/")
+map1 = expressMapThings("https://tasking-test.sensorup.com/v1.0")
 map1
 
-map2 = expressMapThings("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+map2 = expressMapThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
 map2
 }

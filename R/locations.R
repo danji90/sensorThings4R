@@ -4,18 +4,18 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
-#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'x
 #'
-#'v = senseLocations("https://tasking-test.sensorup.com/v1.0/")
+#'v = senseLocations("https://tasking-test.sensorup.com/v1.0")
 #'v
 #'
-#'a = senseLocations("http://example.sensorup.com/v1.0/")
+#'a = senseLocations("http://example.sensorup.com/v1.0")
 #'a
 
 senseLocations = function (url){
   locationsExt = "Locations"
-  locUrl = paste0(url,locationsExt)
+  locUrl = paste0(url, "/", locationsExt)
   locJSON = jsonlite::fromJSON(locUrl)
   locations = locJSON$value
   return(locations)
@@ -27,7 +27,7 @@ senseLocations = function (url){
 #' @return Data frame of class "thingLocation"
 #' @export
 #' @examples
-#'n = senseLocations("http://example.sensorup.com/v1.0/")
+#'n = senseLocations("http://example.sensorup.com/v1.0")
 #'u = makeThingLocation(n)
 #'u
 #'
@@ -44,10 +44,8 @@ makeThingLocation = function(locationDF){
   featureType = locationDF$location$type
   name =locationDF[4]
 
-
-  locObj = cbind(id, name, selfLink, featureType, coords$X1, coords$X2)
-
-  locObj = data.frame(locObj, stringsAsFactors = FALSE)
+  # Create new object with data columns
+  locObj = data.frame(id, name, selfLink, featureType, coords$X1, coords$X2, stringsAsFactors = FALSE)
 
   # Define data frame column header
   colnames(locObj) = c("id", "name", "selfLink", "featureType", "long", "lat")

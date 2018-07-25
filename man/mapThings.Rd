@@ -2,7 +2,7 @@
 % Please edit documentation in R/leaflet.R
 \name{mapThings}
 \alias{mapThings}
-\title{Loads location data from any SensorThings API}
+\title{Display SensorThing locations on a map}
 \usage{
 mapThings(locDf)
 }
@@ -12,8 +12,11 @@ mapThings(locDf)
 \value{
 A list object containing information from url/Things
 }
+\description{
+Creates markers from "thingLocation" objects and loads them onto a Leaflet map
+}
 \examples{
-x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 y = makeThingLocation(x)
 mapThings(y)
 }

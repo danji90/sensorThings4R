@@ -1,10 +1,10 @@
-#' @title Loads location data from any SensorThings API
-#' @description
+#' @title Display SensorThing locations on a map
+#' @description Creates markers from "thingLocation" objects and loads them onto a Leaflet map
 #' @param locDf Data frame with class "thingLocations"
 #' @return A list object containing information from url/Things
 #' @export
 #' @examples
-#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'y = makeThingLocation(x)
 #'mapThings(y)
 
@@ -25,10 +25,10 @@ mapThings = function(locDf){
 #' @return Object of class "track"
 #' @export
 #' @examples
-#'map1 = expressMapThings("https://tasking-test.sensorup.com/v1.0/")
+#'map1 = expressMapThings("https://tasking-test.sensorup.com/v1.0")
 #'map1
 #'
-#'map2 = expressMapThings("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'map2 = expressMapThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'map2
 
 

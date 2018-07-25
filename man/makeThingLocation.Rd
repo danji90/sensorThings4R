@@ -16,7 +16,7 @@ Data frame of class "thingLocation"
 Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
 }
 \examples{
-n = senseLocations("http://example.sensorup.com/v1.0/")
+n = senseLocations("http://example.sensorup.com/v1.0")
 u = makeThingLocation(n)
 u
 
