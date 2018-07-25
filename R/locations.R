@@ -21,26 +21,8 @@ senseLocations = function (url){
   return(locations)
 }
 
-#' @title Assign "thingLocation" class to data frame object
-#' @description Appends the "thingLocation" class to the already present object classes
-#' @param df A data frame created using senseLocations (formatted according to SensorThings API)
-#' @return The input data frame with added class "thingLocation"
-#' @export
-#' @examples
-#'x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
-#'y = defineThingLocation(x)
-#'y
-#
-# defineThingLocation = function(df){
-#   obj = df
-#   class(obj) = append(class(obj), "thingLocation")
-#   return(obj)
-# }
-
-
-
 #' @title Create a "thingLocation" data frame
-#' @description Create a "thingLocation" data frame from a previously parsed SensorThings JSON location object
+#' @description Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
 #' @param locationDF A data frame created using senseLocations (formatted according to SensorThings API)
 #' @return Data frame of class "thingLocation"
 #' @export
@@ -51,20 +33,32 @@ senseLocations = function (url){
 #'
 
 makeThingLocation = function(locationDF){
+
+  # Stores the longitude and latitude values from SensorThings JSON objects into a table, then converts to data frame
   coords = do.call(rbind, locationDF$location$coordinates)
   coords = data.frame(coords)
-  names =locationDF$name
-  locObj = cbind(names, coords$X1, coords$X2)
+
+  # Define data columns
+  id = locationDF[1]
+  selfLink = locationDF[2]
+  featureType = locationDF$location$type
+  name =locationDF[4]
+
+
+  locObj = cbind(id, name, selfLink, featureType, coords$X1, coords$X2)
+
   locObj = data.frame(locObj, stringsAsFactors = FALSE)
-  colnames(locObj) = c("name", "long", "lat")
+
+  # Define data frame column header
+  colnames(locObj) = c("id", "name", "selfLink", "featureType", "long", "lat")
+
+  # Convert lat + long values to numeric
   locObj$long = as.numeric(locObj$long)
   locObj$lat = as.numeric(locObj$lat)
-  defineThingLocation = function(df){
-    obj = df
-    class(obj) = append(class(obj), "thingLocation")
-    return(obj)
-  }
-  locObj = defineThingLocation(locObj)
+
+  # Append class "thingLocation"
+  class(locObj) = append(class(locObj), "thingLocation")
+
   return(locObj)
 }
 

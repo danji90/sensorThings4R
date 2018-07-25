@@ -2,29 +2,20 @@
 % Please edit documentation in R/locations.R
 \name{makeThingLocation}
 \alias{makeThingLocation}
-\title{Assign "thingLocation" class to data frame object}
+\title{Create a "thingLocation" data frame}
 \usage{
 makeThingLocation(locationDF)
 }
 \arguments{
 \item{locationDF}{A data frame created using senseLocations (formatted according to SensorThings API)}
-
-\item{df}{A data frame created using senseLocations (formatted according to SensorThings API)}
 }
 \value{
-The input data frame with added class "thingLocation"
-
 Data frame of class "thingLocation"
 }
 \description{
-Appends the "thingLocation" class to the already present object classes
-
-Create a "thingLocation" data frame from a previously parsed SensorThings JSON location object
+Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
 }
 \examples{
-x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
-y = defineThingLocation(x)
-y
 n = senseLocations("http://example.sensorup.com/v1.0/")
 u = makeThingLocation(n)
 u
