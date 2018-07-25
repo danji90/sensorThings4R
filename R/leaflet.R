@@ -1,11 +1,11 @@
 #' @title Loads location data from any SensorThings API
 #' @description
-#' @param url The SensorThings API url containing the data in SensorThings web standard in string(!) format
+#' @param locDf Data frame with class "thingLocations"
 #' @return A list object containing information from url/Things
 #' @export
 #' @examples
-#'x = createThingMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
-#'y = locToDf(x)
+#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'y = makeThingLocation(x)
 #'mapThings(y)
 
 mapThings = function(locDf){
@@ -19,17 +19,16 @@ mapThings = function(locDf){
 }
 
 
-#' @title Directly plot thing locations to map
-
-#' @description Uses
+#' @title Directly load thing locations to leaflet map
+#' @description Uses senseLocations(), makeThingLocation() and mapThings
 #' @param url Path or URL to input file
 #' @return Object of class "track"
 #' @export
 #' @examples
-#'map1 = thingsToMap("https://tasking-test.sensorup.com/v1.0/")
+#'map1 = expressMapThings("https://tasking-test.sensorup.com/v1.0/")
 #'map1
 #'
-#'map2 = thingsToMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'map2 = expressMapThings("https://toronto-bike-snapshot.sensorup.com/v1.0/")
 #'map2
 
 

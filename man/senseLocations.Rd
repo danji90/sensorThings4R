@@ -7,7 +7,7 @@
 senseLocations(url)
 }
 \arguments{
-\item{url}{The SensorThings API url containing the data in SensorThings web standard in string(!) format}
+\item{url}{A SensorThings API url (string!) containing the data in SensorThings web standard}
 }
 \value{
 A data frame object containing data from url/Things

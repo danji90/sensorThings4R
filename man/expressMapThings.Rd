@@ -2,7 +2,7 @@
 % Please edit documentation in R/leaflet.R
 \name{expressMapThings}
 \alias{expressMapThings}
-\title{Directly plot thing locations to map}
+\title{Directly load thing locations to leaflet map}
 \usage{
 expressMapThings(url)
 }
@@ -13,12 +13,12 @@ expressMapThings(url)
 Object of class "track"
 }
 \description{
-Uses
+Uses senseLocations(), makeThingLocation() and mapThings
 }
 \examples{
-map1 = thingsToMap("https://tasking-test.sensorup.com/v1.0/")
+map1 = expressMapThings("https://tasking-test.sensorup.com/v1.0/")
 map1
 
-map2 = thingsToMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+map2 = expressMapThings("https://toronto-bike-snapshot.sensorup.com/v1.0/")
 map2
 }

@@ -1,6 +1,6 @@
 #' @title Loads location data from any SensorThings API
 #' @description This function parses SensorTHings JSON data and stores it in an R data frame
-#' @param url The SensorThings API url containing the data in SensorThings web standard in string(!) format
+#' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
@@ -30,12 +30,12 @@ senseLocations = function (url){
 #'x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
 #'y = defineThingLocation(x)
 #'y
-
-defineThingLocation = function(df){
-  obj = df
-  class(obj) = append(class(obj), "thingLocation")
-  return(obj)
-}
+#
+# defineThingLocation = function(df){
+#   obj = df
+#   class(obj) = append(class(obj), "thingLocation")
+#   return(obj)
+# }
 
 
 
@@ -59,6 +59,11 @@ makeThingLocation = function(locationDF){
   colnames(locObj) = c("name", "long", "lat")
   locObj$long = as.numeric(locObj$long)
   locObj$lat = as.numeric(locObj$lat)
+  defineThingLocation = function(df){
+    obj = df
+    class(obj) = append(class(obj), "thingLocation")
+    return(obj)
+  }
   locObj = defineThingLocation(locObj)
   return(locObj)
 }

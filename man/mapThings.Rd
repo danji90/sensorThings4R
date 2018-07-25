@@ -7,13 +7,13 @@
 mapThings(locDf)
 }
 \arguments{
-\item{url}{The SensorThings API url containing the data in SensorThings web standard in string(!) format}
+\item{locDf}{Data frame with class "thingLocations"}
 }
 \value{
 A list object containing information from url/Things
 }
 \examples{
-x = createThingMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
-y = locToDf(x)
-locationLeaflet
+x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+y = makeThingLocation(x)
+mapThings(y)
 }

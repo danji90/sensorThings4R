@@ -2,22 +2,31 @@
 % Please edit documentation in R/locations.R
 \name{makeThingLocation}
 \alias{makeThingLocation}
-\title{create a "thingLocation" object from}
+\title{Assign "thingLocation" class to data frame object}
 \usage{
 makeThingLocation(locationDF)
 }
 \arguments{
-\item{locationDF}{Path or URL to input file}
+\item{locationDF}{A data frame created using senseLocations (formatted according to SensorThings API)}
+
+\item{df}{A data frame created using senseLocations (formatted according to SensorThings API)}
 }
 \value{
-Object of class "track"
+The input data frame with added class "thingLocation"
+
+Data frame of class "thingLocation"
 }
 \description{
-Reads table format .txt files
+Appends the "thingLocation" class to the already present object classes
+
+Create a "thingLocation" data frame from a previously parsed SensorThings JSON location object
 }
 \examples{
+x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
+y = defineThingLocation(x)
+y
 n = senseLocations("http://example.sensorup.com/v1.0/")
-u = locToDf(n)
+u = makeThingLocation(n)
 u
 
 }
