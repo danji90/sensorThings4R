@@ -12,6 +12,9 @@ senseLocations(url)
 \value{
 A data frame object containing data from url/Things
 }
+\description{
+This function parses SensorTHings JSON data and stores it in an R data frame
+}
 \examples{
 x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
 x

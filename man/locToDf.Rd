@@ -16,11 +16,9 @@ Object of class "track"
 Reads table format .txt files
 }
 \examples{
-dataPath <- system.file("extdata", "data_pm10.csv", package="tracks4r")
-
-x = readTrack(dataPath)
-
-class(x)
+n = senseLocations("http://example.sensorup.com/v1.0/")
+u = locToDf(n)
+u
 
 
 }

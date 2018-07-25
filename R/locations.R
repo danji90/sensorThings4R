@@ -1,5 +1,5 @@
 #' @title Loads location data from any SensorThings API
-#' @description
+#' @description This function parses SensorTHings JSON data and stores it in an R data frame
 #' @param url The SensorThings API url containing the data in SensorThings web standard in string(!) format
 #' @return A data frame object containing data from url/Things
 #' @export
@@ -21,18 +21,32 @@ senseLocations = function (url){
   return(locations)
 }
 
-#' @title Create Track Object
+#' @title Assign "thingLocation" class to data.frame object
+#' @description
+#' @param url The SensorThings API url containing the data in SensorThings web standard in string(!) format
+#' @return A list object containing information from url/Things
+#' @export
+#' @examples
+#'x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
+#'x
+#'
+defineThingLocation = function(df){
+  obj = df
+  class(obj) = append(class(obj), "thingLocation")
+  return(obj)
+}
 
+
+
+#' @title Create Track Object
 #' @description Reads table format .txt files
 #' @param locationDF Path or URL to input file
 #' @return Object of class "track"
 #' @export
 #' @examples
-#'dataPath <- system.file("extdata", "data_pm10.csv", package="tracks4r")
-#'
-#'x = readTrack(dataPath)
-#'
-#'class(x)
+#'n = senseLocations("http://example.sensorup.com/v1.0/")
+#'u = locToDf(n)
+#'u
 #'
 #'
 
@@ -47,26 +61,8 @@ locToDf = function(locationDF){
   colnames(loc_array) = c("name", "long", "lat")
   loc_array$long = as.numeric(loc_array$long)
   loc_array$lat = as.numeric(loc_array$lat)
+  loc_array = defineThingLocation(loc_array)
   return(loc_array)
 }
 
-#' @title Directly plot thing locations to map
 
-#' @description Reads table format .txt files
-#' @param url Path or URL to input file
-#' @return Object of class "track"
-#' @export
-#' @examples
-#'map1 = thingsToMap("https://tasking-test.sensorup.com/v1.0/")
-#'map1
-#'
-#'map2 = thingsToMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
-#'map2
-
-
-thingsToMap = function(url){
-  x = senseLocations(url)
-  y = locToDf(x)
-  z = locationLeaflet(y)
-  return(z)
-}
