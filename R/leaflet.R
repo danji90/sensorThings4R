@@ -4,16 +4,18 @@
 #' @return A list object containing information from url/Things
 #' @export
 #' @examples
-#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0/")
-#'x
+#'x = createThingMap("https://toronto-bike-snapshot.sensorup.com/v1.0/")
+#'y = locToDf(x)
+#'mapThings(y)
 
-locationLeaflet = function(locDf){
+mapThings = function(locDf){
   if (inherits(locDf,"thingLocation")){
     map <- leaflet::leaflet(data=locDf) %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(name), clusterOptions = leaflet::markerClusterOptions())
+    return(map)
   } else {
-    print("This is not a thingLocation object")
+    stop("This is not a thingLocation object")
   }
-  return(map)
+
 }
 
 
@@ -31,9 +33,9 @@ locationLeaflet = function(locDf){
 #'map2
 
 
-thingsToMap = function(url){
+expressMapThings = function(url){
   x = senseLocations(url)
-  y = locToDf(x)
-  z = locationLeaflet(y)
+  y = makeThingLocation(x)
+  z = mapThings(y)
   return(z)
 }

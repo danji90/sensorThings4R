@@ -21,15 +21,16 @@ senseLocations = function (url){
   return(locations)
 }
 
-#' @title Assign "thingLocation" class to data.frame object
-#' @description
-#' @param url The SensorThings API url containing the data in SensorThings web standard in string(!) format
-#' @return A list object containing information from url/Things
+#' @title Assign "thingLocation" class to data frame object
+#' @description Appends the "thingLocation" class to the already present object classes
+#' @param df A data frame created using senseLocations (formatted according to SensorThings API)
+#' @return The input data frame with added class "thingLocation"
 #' @export
 #' @examples
 #'x = senseLocations(https://toronto-bike-snapshot.sensorup.com/v1.0/)
-#'x
-#'
+#'y = defineThingLocation(x)
+#'y
+
 defineThingLocation = function(df){
   obj = df
   class(obj) = append(class(obj), "thingLocation")
@@ -38,31 +39,28 @@ defineThingLocation = function(df){
 
 
 
-#' @title Create Track Object
-#' @description Reads table format .txt files
-#' @param locationDF Path or URL to input file
-#' @return Object of class "track"
+#' @title Create a "thingLocation" data frame
+#' @description Create a "thingLocation" data frame from a previously parsed SensorThings JSON location object
+#' @param locationDF A data frame created using senseLocations (formatted according to SensorThings API)
+#' @return Data frame of class "thingLocation"
 #' @export
 #' @examples
 #'n = senseLocations("http://example.sensorup.com/v1.0/")
-#'u = locToDf(n)
+#'u = makeThingLocation(n)
 #'u
 #'
-#'
 
-locToDf = function(locationDF){
+makeThingLocation = function(locationDF){
   coords = do.call(rbind, locationDF$location$coordinates)
   coords = data.frame(coords)
-  longs = as.numeric(coords$X1)
-  lats = as.numeric(coords$X2)
   names =locationDF$name
-  loc_array = cbind(names, as.numeric(coords$X1), as.numeric(coords$X2))
-  loc_array = data.frame(loc_array, stringsAsFactors = FALSE)
-  colnames(loc_array) = c("name", "long", "lat")
-  loc_array$long = as.numeric(loc_array$long)
-  loc_array$lat = as.numeric(loc_array$lat)
-  loc_array = defineThingLocation(loc_array)
-  return(loc_array)
+  locObj = cbind(names, coords$X1, coords$X2)
+  locObj = data.frame(locObj, stringsAsFactors = FALSE)
+  colnames(locObj) = c("name", "long", "lat")
+  locObj$long = as.numeric(locObj$long)
+  locObj$lat = as.numeric(locObj$lat)
+  locObj = defineThingLocation(locObj)
+  return(locObj)
 }
 
 
