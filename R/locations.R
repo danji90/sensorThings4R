@@ -34,6 +34,9 @@ senseLocations = function (url){
 
 makeThingLocation = function(locationDF){
 
+  # Limit to point data
+  locationDF = locationDF[locationDF$location$type=="Point", ]
+
   # Stores the longitude and latitude values from SensorThings JSON objects into a table, then converts to data frame
   coords = do.call(rbind, locationDF$location$coordinates)
   coords = data.frame(coords)
@@ -42,13 +45,13 @@ makeThingLocation = function(locationDF){
   id = locationDF[1]
   selfLink = locationDF[2]
   featureType = locationDF$location$type
-  name =locationDF[4]
+  address =locationDF[4]
 
   # Create new object with data columns
-  locObj = data.frame(id, name, selfLink, featureType, coords$X1, coords$X2, stringsAsFactors = FALSE)
+  locObj = data.frame(id, address, selfLink, featureType, coords$X1, coords$X2, stringsAsFactors = FALSE)
 
   # Define data frame column header
-  colnames(locObj) = c("id", "name", "selfLink", "featureType", "long", "lat")
+  colnames(locObj) = c("id", "address", "selfLink", "featureType", "long", "lat")
 
   # Convert lat + long values to numeric
   locObj$long = as.numeric(locObj$long)

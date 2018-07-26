@@ -10,7 +10,7 @@
 
 mapThings = function(locDf){
   if (inherits(locDf,"thingLocation")){
-    map <- leaflet::leaflet(data=locDf) %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(name), clusterOptions = leaflet::markerClusterOptions())
+    map <- leaflet::leaflet(data=locDf)  %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(name), clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
     stop("This is not a thingLocation object")
