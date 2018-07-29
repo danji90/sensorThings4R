@@ -63,4 +63,3 @@ makeThingLocation = function(locationDF){
   return(locObj)
 }
 
-
