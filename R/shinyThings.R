@@ -13,9 +13,10 @@ shinyThingsApp = function(){
 
     titlePanel("ShinyThings"),
     sidebarLayout(position = "right",
-                  sidebarPanel((h4("SensorThings details")), textInput("url", "Type SensorThings base URL here and press enter", "https://tasking-test.sensorup.com/v1.0")),
+                  sidebarPanel(textInput("url", "Type SensorThings base URL here and press enter", "https://tasking-test.sensorup.com/v1.0")),
                   mainPanel(leafletOutput("sensorMap"))
-    )
+    ),
+    fluidRow(verbatimTextOutput("markerId"))
   )
 
 
@@ -28,7 +29,8 @@ shinyThingsApp = function(){
     observe(
       {
         click = input$sensorMap_marker_click
-        print(input$sensorMap_marker_click$id)
+        print(click)
+        output$markerId = renderText(input$sensorMap_marker_click$id)
       }
     )
   }

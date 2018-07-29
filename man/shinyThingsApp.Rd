@@ -2,20 +2,17 @@
 % Please edit documentation in R/shinyThings.R
 \name{shinyThingsApp}
 \alias{shinyThingsApp}
-\title{Shiny App}
+\title{Shiny App for SensorThings API}
 \usage{
 shinyThingsApp()
 }
-\arguments{
-\item{url}{A SensorThings API url (string!) containing the data in SensorThings web standard}
-}
 \value{
-A data frame object containing data from url/Things
+Runs the ShinyThings app
 }
 \description{
-This function parses SensorTHings JSON data and stores it in an R data frame
+Runs a SensorThings API data visualisation tool
 }
 \examples{
-x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
-x
+
+shinyThingsApp()
 }
