@@ -8,33 +8,46 @@
 
 # APIurl = "https://toronto-bike-snapshot.sensorup.com/v1.0"
 
-shinyThingsApp = function(){
+shinyThings = function(){
   ui = shiny::fluidPage(
 
-    titlePanel("ShinyThings"),
-    sidebarLayout(position = "right",
-                  sidebarPanel(textInput("url", "Type SensorThings base URL here and press enter", "https://tasking-test.sensorup.com/v1.0")),
-                  mainPanel(leafletOutput("sensorMap"))
+    shiny::titlePanel("ShinyThings"),
+    shiny::sidebarLayout(position = "right",
+                  shiny::sidebarPanel(shiny::textInput("inputUrl", "Type SensorThings base URL here and press enter"), shiny::actionButton("URLsubmit", "Update map", shiny::icon("refresh"))),
+                  shiny::mainPanel(leaflet::leafletOutput("sensorMap"))
     ),
-    fluidRow(verbatimTextOutput("markerId"))
+    shiny::fluidRow(shiny::verbatimTextOutput("markerId"))
   )
 
 
+  server <- function(input, output, session) {
 
-  server <- function(input, output) {
-    output$sensorMap <- renderLeaflet({
-      expressMapThings(input$url)
+    test <- reactiveVal("")
+
+    print(isolate(test()))
+
+    observeEvent(input$URLsubmit, {
+      testNew = paste0(input$inputUrl)
+      test(testNew)
+      cat("url:", input$inputUrl, "\n")
+      output$sensorMap = leaflet::renderLeaflet({
+        expressMapThings(isolate(test()))
+      })
+    })
+
+    observeEvent(input$test, {
+      print(test)
     })
 
     observe(
       {
         click = input$sensorMap_marker_click
         print(click)
-        output$markerId = renderText(input$sensorMap_marker_click$id)
+        output$markerId = shiny::renderText(input$sensorMap_marker_click$id)
       }
     )
   }
 
-  shinyApp(ui, server)
+  shiny::shinyApp(ui, server)
 
 }

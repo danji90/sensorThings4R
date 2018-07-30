@@ -15,8 +15,8 @@
 
 senseThings = function (url){
   thingsExt = "Things"
-  query = "?$select=id,name"
-  thingsUrl = paste0(url, "/", thingsExt, query)
+  # query = "?$select=id,name"
+  thingsUrl = paste0(url, "/", thingsExt)
   print(thingsUrl)
   thingsJSON = jsonlite::fromJSON(thingsUrl)
   things = thingsJSON$value
