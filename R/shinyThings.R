@@ -31,7 +31,7 @@ shinyThings = function(){
       test(testNew)
       cat("url:", input$inputUrl, "\n")
       output$sensorMap = leaflet::renderLeaflet({
-        expressMapThings(isolate(test()))
+        expressMapFoI(isolate(test()))
       })
     })
 

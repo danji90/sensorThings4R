@@ -35,31 +35,32 @@ senseFoI = function (url){
 makeThingFoI = function(FoIDF){
 
   # Limit to point data
-  FoIDF = FoIDF[FoIDF$location$type=="Point", ]
+  FoIDF = FoIDF[FoIDF$feature$type=="Point", ]
 
   # Stores the longitude and latitude values from SensorThings JSON objects into a table, then converts to data frame
-  coords = do.call(rbind, FoIDF$location$coordinates)
+  coords = do.call(rbind, FoIDF$feature$coordinates)
   coords = data.frame(coords)
 
   # Define data columns
   id = FoIDF[1]
   selfLink = FoIDF[2]
-  featureType = FoIDF$location$type
-  address =FoIDF[4]
+  featureType = FoIDF$feature$type
+  name = FoIDF[4]
+  obsLink = FoIDF[7]
 
   # Create new object with data columns
-  locObj = data.frame(id, address, selfLink, featureType, coords$X1, coords$X2, stringsAsFactors = FALSE)
+  foiObj = data.frame(id, selfLink, name, featureType, obsLink, coords$X1, coords$X2, stringsAsFactors = FALSE)
 
   # Define data frame column header
-  colnames(locObj) = c("id", "address", "selfLink", "featureType", "long", "lat")
+  colnames(foiObj) = c("id", "selfLink", "name", "featureType", "observationLink", "long", "lat")
 
   # Convert lat + long values to numeric
-  locObj$long = as.numeric(locObj$long)
-  locObj$lat = as.numeric(locObj$lat)
+  foiObj$long = as.numeric(foiObj$long)
+  foiObj$lat = as.numeric(foiObj$lat)
 
   # Append class "thingLocation"
-  class(locObj) = append(class(locObj), "thingLocation")
+  class(foiObj) = append(class(foiObj), "thingObject")
 
-  return(locObj)
+  return(foiObj)
 }
 
