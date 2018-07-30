@@ -58,7 +58,7 @@ makeThingFoI = function(FoIDF){
   foiObj$long = as.numeric(foiObj$long)
   foiObj$lat = as.numeric(foiObj$lat)
 
-  # Append class "thingLocation"
+  # Append class "thingObject"
   class(foiObj) = append(class(foiObj), "thingObject")
 
   return(foiObj)
