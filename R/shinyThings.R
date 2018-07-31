@@ -22,21 +22,22 @@ shinyThings = function(){
 
   server <- function(input, output, session) {
 
-    test <- reactiveVal("")
-
-    print(isolate(test()))
-
-    observeEvent(input$URLsubmit, {
-      testNew = paste0(input$inputUrl)
-      test(testNew)
-      cat("url:", input$inputUrl, "\n")
-      output$sensorMap = leaflet::renderLeaflet({
-        expressMapFoI(isolate(test()))
-      })
+    output$sensorMap = leaflet::renderLeaflet({
+      initMap = function(){
+        map <- leaflet::leaflet()  %>% leaflet::addTiles() %>% leaflet::setView(11.350790, 46.501825, zoom = 3)
+        return (map)
+      }
+      initMap()
     })
 
-    observeEvent(input$test, {
-      print(test)
+    userInput  <- reactiveVal("")
+
+    observeEvent(input$URLsubmit, {
+      userInputNew = paste0(input$inputUrl)
+      userInput(userInputNew)
+      output$sensorMap = leaflet::renderLeaflet({
+        expressMapFoI(isolate(userInput()))
+      })
     })
 
     observe(
