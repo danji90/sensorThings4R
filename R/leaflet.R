@@ -9,11 +9,11 @@
 #'mapThings(y)
 
 mapThingLocations = function(locDf){
-  if (inherits(locDf,"thingLocation")){
+  if (inherits(locDf,"mapThing")){
     map <- leaflet::leaflet(data=locDf)  %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(address), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
-    stop("This is not a thingLocation object")
+    stop("This is not a mapThing object")
   }
 
 }
@@ -50,11 +50,11 @@ expressMapLocations = function(url){
 #'mapThingFoI(y)
 
 mapThingFoI = function(locDf){
-  if (inherits(locDf,"thingObject")){
+  if (inherits(locDf,"mapThing")){
     map <- leaflet::leaflet(data=locDf)  %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(name), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
-    stop("This is not a thingObject")
+    stop("This is not a mapThing object")
   }
 }
 

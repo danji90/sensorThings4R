@@ -4,13 +4,13 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
-#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
+#'x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'x
 #'
-#'v = senseLocations("https://tasking-test.sensorup.com/v1.0")
+#'v = senseFoI("https://tasking-test.sensorup.com/v1.0")
 #'v
 #'
-#'a = senseLocations("http://example.sensorup.com/v1.0")
+#'a = senseFoI("http://example.sensorup.com/v1.0")
 #'a
 
 senseFoI = function (url){
@@ -21,14 +21,14 @@ senseFoI = function (url){
   return(FoIs)
 }
 
-#' @title Create a "thingLocation" data frame
-#' @description Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
-#' @param FoIDF A data frame created using senseLocations (formatted according to SensorThings API)
-#' @return Data frame of class "thingLocation"
+#' @title Create a "thingObject" data frame
+#' @description Creates a data frame from a previously parsed SensorThings JSON FoI object with the added class "thingFoI"
+#' @param FoIDF A data frame created using senseFoI (formatted according to SensorThings API)
+#' @return Data frame of class "thingFoI"
 #' @export
 #' @examples
-#'n = senseLocations("http://example.sensorup.com/v1.0")
-#'u = makeThingLocation(n)
+#'n = senseFoI("http://example.sensorup.com/v1.0")
+#'u = makeThingFoI(n)
 #'u
 #'
 
@@ -60,6 +60,7 @@ makeThingFoI = function(FoIDF){
 
   # Append class "thingObject"
   class(foiObj) = append(class(foiObj), "thingObject")
+  class(foiObj) = append(class(foiObj), "mapThing")
 
   return(foiObj)
 }

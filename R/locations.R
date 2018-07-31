@@ -58,7 +58,8 @@ makeThingLocation = function(locationDF){
   locObj$lat = as.numeric(locObj$lat)
 
   # Append class "thingLocation"
-  class(locObj) = append(class(locObj), "thingLocation")
+  class(locObj) = append(class(locObj), "thingObject")
+  class(locObj) = append(class(locObj), "mapThing")
 
   return(locObj)
 }

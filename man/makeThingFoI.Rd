@@ -2,22 +2,22 @@
 % Please edit documentation in R/FoI.R
 \name{makeThingFoI}
 \alias{makeThingFoI}
-\title{Create a "thingLocation" data frame}
+\title{Create a "thingObject" data frame}
 \usage{
 makeThingFoI(FoIDF)
 }
 \arguments{
-\item{FoIDF}{A data frame created using senseLocations (formatted according to SensorThings API)}
+\item{FoIDF}{A data frame created using senseFoI (formatted according to SensorThings API)}
 }
 \value{
-Data frame of class "thingLocation"
+Data frame of class "thingFoI"
 }
 \description{
-Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
+Creates a data frame from a previously parsed SensorThings JSON FoI object with the added class "thingFoI"
 }
 \examples{
-n = senseLocations("http://example.sensorup.com/v1.0")
-u = makeThingLocation(n)
+n = senseFoI("http://example.sensorup.com/v1.0")
+u = makeThingFoI(n)
 u
 
 }
