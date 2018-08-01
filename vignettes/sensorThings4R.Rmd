@@ -26,9 +26,13 @@ SensorThings API relies on a set of classes, that are interrelated using web URL
 
 ## Functions
 
+```{r, include=FALSE}
+library(kableExtra)
+```
 ```{r}
 library(sensorThings4R)
 ```
+
 
 
 The package includes the following features:
@@ -54,6 +58,7 @@ class(foi)
 
 ```{r}
 s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
+
 class(s1)
 ```
 
@@ -66,7 +71,10 @@ class(s1)
 ```{r}
 n = senseLocations("http://example.sensorup.com/v1.0")
 u = makeThingLocation(n)
-head(u)
+
+knitr::kable(u) %>%
+  kable_styling(bootstrap_options = "striped", font_size = 10) %>%
+  scroll_box(width = "100%", height = "200px")
 
 class(u)
 ```

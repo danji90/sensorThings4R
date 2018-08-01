@@ -16,6 +16,7 @@
 
 <title>sensorThings4R</title>
 
+<script src="data:application/x-javascript;base64,JChkb2N1bWVudCkucmVhZHkoZnVuY3Rpb24oKXsKICAgICQoJ1tkYXRhLXRvZ2dsZT0idG9vbHRpcCJdJykudG9vbHRpcCgpOwogICAgJCgnW2RhdGEtdG9nZ2xlPSJwb3BvdmVyIl0nKS5wb3BvdmVyKCk7Cn0pOwo="></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -88,7 +89,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sensorThings4R)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kableExtra)
+<span class="kw">library</span>(sensorThings4R)</code></pre></div>
 <p>The package includes the following features:</p>
 <ul>
 <li>Functions that store the SensorThings API Locations and FeaturesOfInterest in a dataframe. Depending on the function, the new dataframes are assigned the classes “locationObject” or “foiObject”.</li>
@@ -106,6 +108,7 @@ foi =<span class="st"> </span><span class="kw">senseFoI</span>(<span class="st">
 <li>A function that stores SensorThings API Things in a dataframe, adding a “thingObject” class to it. Potential new methods specific to this class are to be developed in the future.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s1 =<span class="st"> </span><span class="kw">senseThings</span>(<span class="st">&quot;https://toronto-bike-snapshot.sensorup.com/v1.0&quot;</span>)
+
 <span class="kw">class</span>(s1)</code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;  &quot;thingObject&quot;</code></pre>
 <p>     </p>
@@ -114,28 +117,1535 @@ foi =<span class="st"> </span><span class="kw">senseFoI</span>(<span class="st">
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n =<span class="st"> </span><span class="kw">senseLocations</span>(<span class="st">&quot;http://example.sensorup.com/v1.0&quot;</span>)
 u =<span class="st"> </span><span class="kw">makeThingLocation</span>(n)
-<span class="kw">head</span>(u)</code></pre></div>
-<pre><code>##        id               address
-## 1 8773509               SU-NW-5
-## 2 8668535                VU-W-1
-## 3 8480396                    NA
-## 4 6973350 SensorUp HQ2 #exclude
-## 5 6604000              VU-SW-13
-## 6 6535168              VU-SW-12
-##                                              selfLink featureType
-## 1 http://example.sensorup.com/v1.0/Locations(8773509)       Point
-## 2 http://example.sensorup.com/v1.0/Locations(8668535)       Point
-## 3 http://example.sensorup.com/v1.0/Locations(8480396)       Point
-## 4 http://example.sensorup.com/v1.0/Locations(6973350)       Point
-## 5 http://example.sensorup.com/v1.0/Locations(6604000)       Point
-## 6 http://example.sensorup.com/v1.0/Locations(6535168)       Point
-##        long      lat
-## 1 -114.1619 51.08691
-## 2 -114.2645 51.06347
-## 3 -114.1236 50.91318
-## 4 -114.1300 51.08300
-## 5 -114.0845 50.93800
-## 6 -114.1374 51.04270</code></pre>
+
+knitr<span class="op">::</span><span class="kw">kable</span>(u) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, <span class="dt">font_size =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;200px&quot;</span>)</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="font-size: 10px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+address
+</th>
+<th style="text-align:left;">
+selfLink
+</th>
+<th style="text-align:left;">
+featureType
+</th>
+<th style="text-align:right;">
+long
+</th>
+<th style="text-align:right;">
+lat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+8773509
+</td>
+<td style="text-align:left;">
+SU-NW-5
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(8773509)" class="uri">http://example.sensorup.com/v1.0/Locations(8773509)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1619
+</td>
+<td style="text-align:right;">
+51.08691
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+8668535
+</td>
+<td style="text-align:left;">
+VU-W-1
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(8668535)" class="uri">http://example.sensorup.com/v1.0/Locations(8668535)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.2645
+</td>
+<td style="text-align:right;">
+51.06347
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+8480396
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(8480396)" class="uri">http://example.sensorup.com/v1.0/Locations(8480396)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1236
+</td>
+<td style="text-align:right;">
+50.91318
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+6973350
+</td>
+<td style="text-align:left;">
+SensorUp HQ2 #exclude
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(6973350)" class="uri">http://example.sensorup.com/v1.0/Locations(6973350)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1300
+</td>
+<td style="text-align:right;">
+51.08300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+6604000
+</td>
+<td style="text-align:left;">
+VU-SW-13
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(6604000)" class="uri">http://example.sensorup.com/v1.0/Locations(6604000)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0845
+</td>
+<td style="text-align:right;">
+50.93800
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+6535168
+</td>
+<td style="text-align:left;">
+VU-SW-12
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(6535168)" class="uri">http://example.sensorup.com/v1.0/Locations(6535168)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1374
+</td>
+<td style="text-align:right;">
+51.04270
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+6346678
+</td>
+<td style="text-align:left;">
+VU-SW-11
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(6346678)" class="uri">http://example.sensorup.com/v1.0/Locations(6346678)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1070
+</td>
+<td style="text-align:right;">
+51.02300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+5773878
+</td>
+<td style="text-align:left;">
+VU-SE-11 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(5773878)" class="uri">http://example.sensorup.com/v1.0/Locations(5773878)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0206
+</td>
+<td style="text-align:right;">
+51.04086
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+3072031
+</td>
+<td style="text-align:left;">
+VU-NE-5
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(3072031)" class="uri">http://example.sensorup.com/v1.0/Locations(3072031)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0450
+</td>
+<td style="text-align:right;">
+51.05236
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+1520749
+</td>
+<td style="text-align:left;">
+VU-SE-10
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(1520749)" class="uri">http://example.sensorup.com/v1.0/Locations(1520749)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9661
+</td>
+<td style="text-align:right;">
+50.91521
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+1520409
+</td>
+<td style="text-align:left;">
+VU-SE-9 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(1520409)" class="uri">http://example.sensorup.com/v1.0/Locations(1520409)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0319
+</td>
+<td style="text-align:right;">
+51.03823
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+529158
+</td>
+<td style="text-align:left;">
+VU-NW-21
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(529158)" class="uri">http://example.sensorup.com/v1.0/Locations(529158)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0902
+</td>
+<td style="text-align:right;">
+51.09206
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+505402
+</td>
+<td style="text-align:left;">
+VU-SE-8
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505402)" class="uri">http://example.sensorup.com/v1.0/Locations(505402)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9613
+</td>
+<td style="text-align:right;">
+50.92733
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:right;">
+505328
+</td>
+<td style="text-align:left;">
+VU-SW-10
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505328)" class="uri">http://example.sensorup.com/v1.0/Locations(505328)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1336
+</td>
+<td style="text-align:right;">
+50.96281
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:right;">
+505261
+</td>
+<td style="text-align:left;">
+VU-NE-4
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505261)" class="uri">http://example.sensorup.com/v1.0/Locations(505261)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0043
+</td>
+<td style="text-align:right;">
+51.09169
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:right;">
+505187
+</td>
+<td style="text-align:left;">
+VU-NW-20
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505187)" class="uri">http://example.sensorup.com/v1.0/Locations(505187)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1426
+</td>
+<td style="text-align:right;">
+51.10927
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:right;">
+505146
+</td>
+<td style="text-align:left;">
+VU-NW-19
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505146)" class="uri">http://example.sensorup.com/v1.0/Locations(505146)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1083
+</td>
+<td style="text-align:right;">
+51.07624
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:right;">
+505112
+</td>
+<td style="text-align:left;">
+VU-NW-18
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505112)" class="uri">http://example.sensorup.com/v1.0/Locations(505112)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.2136
+</td>
+<td style="text-align:right;">
+51.13048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:right;">
+505061
+</td>
+<td style="text-align:left;">
+VU-SW-9
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(505061)" class="uri">http://example.sensorup.com/v1.0/Locations(505061)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0866
+</td>
+<td style="text-align:right;">
+50.93738
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+20
+</td>
+<td style="text-align:right;">
+504972
+</td>
+<td style="text-align:left;">
+VU-NW-17
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504972)" class="uri">http://example.sensorup.com/v1.0/Locations(504972)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0852
+</td>
+<td style="text-align:right;">
+51.05587
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:right;">
+504887
+</td>
+<td style="text-align:left;">
+VU-SE-7 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504887)" class="uri">http://example.sensorup.com/v1.0/Locations(504887)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9669
+</td>
+<td style="text-align:right;">
+50.91567
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:right;">
+504822
+</td>
+<td style="text-align:left;">
+VU-NW-16
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504822)" class="uri">http://example.sensorup.com/v1.0/Locations(504822)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1586
+</td>
+<td style="text-align:right;">
+51.07270
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+23
+</td>
+<td style="text-align:right;">
+504790
+</td>
+<td style="text-align:left;">
+VU-NE-3
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504790)" class="uri">http://example.sensorup.com/v1.0/Locations(504790)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0590
+</td>
+<td style="text-align:right;">
+51.05897
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:right;">
+504714
+</td>
+<td style="text-align:left;">
+VU-NW-15
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504714)" class="uri">http://example.sensorup.com/v1.0/Locations(504714)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1812
+</td>
+<td style="text-align:right;">
+51.12969
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:right;">
+504537
+</td>
+<td style="text-align:left;">
+VU-SW-8
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504537)" class="uri">http://example.sensorup.com/v1.0/Locations(504537)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0810
+</td>
+<td style="text-align:right;">
+50.94703
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:right;">
+504484
+</td>
+<td style="text-align:left;">
+VU-SW-7
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504484)" class="uri">http://example.sensorup.com/v1.0/Locations(504484)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1780
+</td>
+<td style="text-align:right;">
+51.03224
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+27
+</td>
+<td style="text-align:right;">
+504425
+</td>
+<td style="text-align:left;">
+VU-NW-14
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504425)" class="uri">http://example.sensorup.com/v1.0/Locations(504425)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1589
+</td>
+<td style="text-align:right;">
+51.13033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+28
+</td>
+<td style="text-align:right;">
+504367
+</td>
+<td style="text-align:left;">
+VU-SE-6
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504367)" class="uri">http://example.sensorup.com/v1.0/Locations(504367)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0693
+</td>
+<td style="text-align:right;">
+50.94719
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+29
+</td>
+<td style="text-align:right;">
+504326
+</td>
+<td style="text-align:left;">
+VU-NW-13
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504326)" class="uri">http://example.sensorup.com/v1.0/Locations(504326)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1481
+</td>
+<td style="text-align:right;">
+51.13748
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:right;">
+504264
+</td>
+<td style="text-align:left;">
+VU-NW-12
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504264)" class="uri">http://example.sensorup.com/v1.0/Locations(504264)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1114
+</td>
+<td style="text-align:right;">
+51.06414
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+31
+</td>
+<td style="text-align:right;">
+504194
+</td>
+<td style="text-align:left;">
+VU-NW-11 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504194)" class="uri">http://example.sensorup.com/v1.0/Locations(504194)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0898
+</td>
+<td style="text-align:right;">
+51.05622
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+32
+</td>
+<td style="text-align:right;">
+504127
+</td>
+<td style="text-align:left;">
+VU-NW-10 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504127)" class="uri">http://example.sensorup.com/v1.0/Locations(504127)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0913
+</td>
+<td style="text-align:right;">
+51.05198
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+33
+</td>
+<td style="text-align:right;">
+504055
+</td>
+<td style="text-align:left;">
+VU-NW-9
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(504055)" class="uri">http://example.sensorup.com/v1.0/Locations(504055)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1980
+</td>
+<td style="text-align:right;">
+51.11171
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+34
+</td>
+<td style="text-align:right;">
+503994
+</td>
+<td style="text-align:left;">
+VU-SW-6
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503994)" class="uri">http://example.sensorup.com/v1.0/Locations(503994)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0783
+</td>
+<td style="text-align:right;">
+51.01316
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+35
+</td>
+<td style="text-align:right;">
+503932
+</td>
+<td style="text-align:left;">
+VU-NW-8
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503932)" class="uri">http://example.sensorup.com/v1.0/Locations(503932)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.2059
+</td>
+<td style="text-align:right;">
+51.10400
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+36
+</td>
+<td style="text-align:right;">
+503853
+</td>
+<td style="text-align:left;">
+VU-NE-2
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503853)" class="uri">http://example.sensorup.com/v1.0/Locations(503853)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9322
+</td>
+<td style="text-align:right;">
+51.09291
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+37
+</td>
+<td style="text-align:right;">
+503792
+</td>
+<td style="text-align:left;">
+VU-SW-5
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503792)" class="uri">http://example.sensorup.com/v1.0/Locations(503792)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1385
+</td>
+<td style="text-align:right;">
+50.93726
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+38
+</td>
+<td style="text-align:right;">
+503733
+</td>
+<td style="text-align:left;">
+VU-SE-5
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503733)" class="uri">http://example.sensorup.com/v1.0/Locations(503733)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0286
+</td>
+<td style="text-align:right;">
+50.89761
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+39
+</td>
+<td style="text-align:right;">
+503681
+</td>
+<td style="text-align:left;">
+VU-NW-7
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503681)" class="uri">http://example.sensorup.com/v1.0/Locations(503681)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1000
+</td>
+<td style="text-align:right;">
+51.06393
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:right;">
+503640
+</td>
+<td style="text-align:left;">
+VU-SW-4
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503640)" class="uri">http://example.sensorup.com/v1.0/Locations(503640)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1316
+</td>
+<td style="text-align:right;">
+51.01876
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41
+</td>
+<td style="text-align:right;">
+503584
+</td>
+<td style="text-align:left;">
+VU-NW-6
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503584)" class="uri">http://example.sensorup.com/v1.0/Locations(503584)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1487
+</td>
+<td style="text-align:right;">
+51.09508
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:right;">
+503515
+</td>
+<td style="text-align:left;">
+VU-SE-4
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503515)" class="uri">http://example.sensorup.com/v1.0/Locations(503515)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0391
+</td>
+<td style="text-align:right;">
+50.90009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+43
+</td>
+<td style="text-align:right;">
+503485
+</td>
+<td style="text-align:left;">
+VU-SE-3
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503485)" class="uri">http://example.sensorup.com/v1.0/Locations(503485)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0217
+</td>
+<td style="text-align:right;">
+50.88699
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:right;">
+503462
+</td>
+<td style="text-align:left;">
+VU-NE-1
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503462)" class="uri">http://example.sensorup.com/v1.0/Locations(503462)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9616
+</td>
+<td style="text-align:right;">
+51.17064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:right;">
+503399
+</td>
+<td style="text-align:left;">
+VU-NW-5
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503399)" class="uri">http://example.sensorup.com/v1.0/Locations(503399)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1002
+</td>
+<td style="text-align:right;">
+51.05313
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:right;">
+503343
+</td>
+<td style="text-align:left;">
+VU-NW-4
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(503343)" class="uri">http://example.sensorup.com/v1.0/Locations(503343)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0644
+</td>
+<td style="text-align:right;">
+51.10935
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+47
+</td>
+<td style="text-align:right;">
+367110
+</td>
+<td style="text-align:left;">
+VU-NW-3
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(367110)" class="uri">http://example.sensorup.com/v1.0/Locations(367110)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1358
+</td>
+<td style="text-align:right;">
+51.16326
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+48
+</td>
+<td style="text-align:right;">
+357690
+</td>
+<td style="text-align:left;">
+VU-SW-3
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(357690)" class="uri">http://example.sensorup.com/v1.0/Locations(357690)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1835
+</td>
+<td style="text-align:right;">
+51.03739
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+49
+</td>
+<td style="text-align:right;">
+354821
+</td>
+<td style="text-align:left;">
+VU-FNW-1
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(354821)" class="uri">http://example.sensorup.com/v1.0/Locations(354821)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1400
+</td>
+<td style="text-align:right;">
+51.20870
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+50
+</td>
+<td style="text-align:right;">
+316593
+</td>
+<td style="text-align:left;">
+VU-SE-2 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(316593)" class="uri">http://example.sensorup.com/v1.0/Locations(316593)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0339
+</td>
+<td style="text-align:right;">
+50.90127
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+51
+</td>
+<td style="text-align:right;">
+308215
+</td>
+<td style="text-align:left;">
+VU-SW-2 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(308215)" class="uri">http://example.sensorup.com/v1.0/Locations(308215)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0960
+</td>
+<td style="text-align:right;">
+50.90747
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+52
+</td>
+<td style="text-align:right;">
+302487
+</td>
+<td style="text-align:left;">
+VU-SW-1 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(302487)" class="uri">http://example.sensorup.com/v1.0/Locations(302487)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0832
+</td>
+<td style="text-align:right;">
+51.03702
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+53
+</td>
+<td style="text-align:right;">
+267118
+</td>
+<td style="text-align:left;">
+VU-SE-1
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(267118)" class="uri">http://example.sensorup.com/v1.0/Locations(267118)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9733
+</td>
+<td style="text-align:right;">
+50.92069
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+54
+</td>
+<td style="text-align:right;">
+259560
+</td>
+<td style="text-align:left;">
+VU-NW-2
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(259560)" class="uri">http://example.sensorup.com/v1.0/Locations(259560)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0694
+</td>
+<td style="text-align:right;">
+51.07472
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+56
+</td>
+<td style="text-align:right;">
+116528
+</td>
+<td style="text-align:left;">
+SU-NW-1
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(116528)" class="uri">http://example.sensorup.com/v1.0/Locations(116528)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.2395
+</td>
+<td style="text-align:right;">
+51.13414
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+57
+</td>
+<td style="text-align:right;">
+103132
+</td>
+<td style="text-align:left;">
+SU-NW-4 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(103132)" class="uri">http://example.sensorup.com/v1.0/Locations(103132)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1548
+</td>
+<td style="text-align:right;">
+51.12873
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+58
+</td>
+<td style="text-align:right;">
+103064
+</td>
+<td style="text-align:left;">
+SU-NW-3
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(103064)" class="uri">http://example.sensorup.com/v1.0/Locations(103064)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0783
+</td>
+<td style="text-align:right;">
+51.05921
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+59
+</td>
+<td style="text-align:right;">
+103059
+</td>
+<td style="text-align:left;">
+SU-NW-2 #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(103059)" class="uri">http://example.sensorup.com/v1.0/Locations(103059)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1919
+</td>
+<td style="text-align:right;">
+51.13002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+60
+</td>
+<td style="text-align:right;">
+90299
+</td>
+<td style="text-align:left;">
+620 7th Avenue SW, Calgary, Alberta #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(90299)" class="uri">http://example.sensorup.com/v1.0/Locations(90299)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0731
+</td>
+<td style="text-align:right;">
+51.04715
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+61
+</td>
+<td style="text-align:right;">
+90295
+</td>
+<td style="text-align:left;">
+49th Avenue &amp; 15th Street SE, Calgary, Alberta #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(90295)" class="uri">http://example.sensorup.com/v1.0/Locations(90295)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-113.9697
+</td>
+<td style="text-align:right;">
+50.95512
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+62
+</td>
+<td style="text-align:right;">
+90288
+</td>
+<td style="text-align:left;">
+39th Street &amp; 29th Avenue NW, Calgary, Alberta #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(90288)" class="uri">http://example.sensorup.com/v1.0/Locations(90288)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1453
+</td>
+<td style="text-align:right;">
+51.08015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+63
+</td>
+<td style="text-align:right;">
+7745
+</td>
+<td style="text-align:left;">
+SU-W-1 Balcony #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(7745)" class="uri">http://example.sensorup.com/v1.0/Locations(7745)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1360
+</td>
+<td style="text-align:right;">
+51.04200
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+64
+</td>
+<td style="text-align:right;">
+4235
+</td>
+<td style="text-align:left;">
+SU-SW-2 Balcony #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(4235)" class="uri">http://example.sensorup.com/v1.0/Locations(4235)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1080
+</td>
+<td style="text-align:right;">
+51.02200
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+65
+</td>
+<td style="text-align:right;">
+4230
+</td>
+<td style="text-align:left;">
+SU-SW-1 Backyard #inactive
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(4230)" class="uri">http://example.sensorup.com/v1.0/Locations(4230)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.0840
+</td>
+<td style="text-align:right;">
+50.93800
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+66
+</td>
+<td style="text-align:right;">
+4225
+</td>
+<td style="text-align:left;">
+SensorUp HQ #exclude
+</td>
+<td style="text-align:left;">
+<a href="http://example.sensorup.com/v1.0/Locations(4225)" class="uri">http://example.sensorup.com/v1.0/Locations(4225)</a>
+</td>
+<td style="text-align:left;">
+Point
+</td>
+<td style="text-align:right;">
+-114.1300
+</td>
+<td style="text-align:right;">
+51.08300
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(u)</code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;    &quot;thingLocation&quot; &quot;mapThing&quot;</code></pre>
 <p>     </p>
@@ -150,161 +1660,424 @@ u =<span class="st"> </span><span class="kw">makeThingLocation</span>(n)
 <p>You can write math expressions, e.g. <span class="math inline">\(Y = X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, and tables, e.g. using <code>knitr::kable()</code>.</p>
 <table>
 <thead>
-<tr class="header">
-<th></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">carb</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+<th style="text-align:right;">
+wt
+</th>
+<th style="text-align:right;">
+qsec
+</th>
+<th style="text-align:right;">
+vs
+</th>
+<th style="text-align:right;">
+am
+</th>
+<th style="text-align:right;">
+gear
+</th>
+<th style="text-align:right;">
+carb
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160.0
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.620
+</td>
+<td style="text-align:right;">
+16.46
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="even">
-<td>Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160.0
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.875
+</td>
+<td style="text-align:right;">
+17.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="odd">
-<td>Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108.0</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108.0
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+2.320
+</td>
+<td style="text-align:right;">
+18.61
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td>Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258.0</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258.0
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:right;">
+3.215
+</td>
+<td style="text-align:right;">
+19.44
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td>Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360.0
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+3.440
+</td>
+<td style="text-align:right;">
+17.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td>Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225.0</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Valiant
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+225.0
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+3.460
+</td>
+<td style="text-align:right;">
+20.22
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td>Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Duster 360
+</td>
+<td style="text-align:right;">
+14.3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360.0
+</td>
+<td style="text-align:right;">
+245
+</td>
+<td style="text-align:right;">
+3.21
+</td>
+<td style="text-align:right;">
+3.570
+</td>
+<td style="text-align:right;">
+15.84
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="even">
-<td>Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Merc 240D
+</td>
+<td style="text-align:right;">
+24.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+146.7
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+3.69
+</td>
+<td style="text-align:right;">
+3.190
+</td>
+<td style="text-align:right;">
+20.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td>Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Merc 230
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+140.8
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+3.92
+</td>
+<td style="text-align:right;">
+3.150
+</td>
+<td style="text-align:right;">
+22.90
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td>Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Merc 280
+</td>
+<td style="text-align:right;">
+19.2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+167.6
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+3.92
+</td>
+<td style="text-align:right;">
+3.440
+</td>
+<td style="text-align:right;">
+18.30
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
 </tbody>
 </table>

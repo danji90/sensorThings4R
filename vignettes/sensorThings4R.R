@@ -1,4 +1,5 @@
 ## ------------------------------------------------------------------------
+library(kableExtra)
 library(sensorThings4R)
 
 ## ------------------------------------------------------------------------
@@ -13,12 +14,16 @@ class(foi)
 
 ## ------------------------------------------------------------------------
 s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
+
 class(s1)
 
 ## ------------------------------------------------------------------------
 n = senseLocations("http://example.sensorup.com/v1.0")
 u = makeThingLocation(n)
-head(u)
+
+knitr::kable(u) %>%
+  kable_styling(bootstrap_options = "striped", font_size = 10) %>%
+  scroll_box(width = "100%", height = "200px")
 
 class(u)
 

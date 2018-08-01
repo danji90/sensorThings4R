@@ -3,6 +3,7 @@
 #' @param locDf Data frame with class "thingLocations"
 #' @return A list object containing information from url/Things
 #' @export
+#' @importFrom dplyr %>%
 #' @examples
 #'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'y = makeThingLocation(x)
