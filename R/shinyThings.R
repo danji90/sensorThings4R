@@ -1,10 +1,10 @@
 #' @title Shiny App for SensorThings API
 #' @description Runs a SensorThings API data visualisation tool
-#' @return Runs the ShinyThings app
+#' @return Runs the ShinyThings Shiny app
 #' @export
 #' @examples
 #'
-#'shinyThingsApp()
+#'shinyThings()
 
 # APIurl = "https://toronto-bike-snapshot.sensorup.com/v1.0"
 
@@ -13,10 +13,24 @@ shinyThings = function(){
 
     shiny::titlePanel("ShinyThings"),
     shiny::sidebarLayout(position = "right",
-                  shiny::sidebarPanel(shiny::textInput("inputUrl", "Type SensorThings base URL here and press enter"), shiny::actionButton("URLsubmit", "Update map", shiny::icon("refresh"))),
-                  shiny::mainPanel(leaflet::leafletOutput("sensorMap"))
-    ),
-    shiny::fluidRow(shiny::verbatimTextOutput("markerId"))
+                  shiny::sidebarPanel(shiny::textInput("inputUrl", "Type SensorThings base URL here and press enter"),
+                                      shiny::actionButton("URLsubmit", "Update map", shiny::icon("refresh")),
+                                      #shiny::actionButton("urlShow", "show url", shiny::icon("refresh")),
+                                      shiny::HTML("<br><br><br>"),
+                                      shiny::helpText("Station ID: "),
+                                      shiny::textOutput("thingId"),
+                                      shiny::HTML("<br>"),
+                                      shiny::helpText("Station name: "),
+                                      shiny::textOutput("thingName"),
+                                      shiny::HTML("<br>"),
+                                      shiny::helpText("Description: "),
+                                      shiny::textOutput("thingDescription"),
+                                      shiny::HTML("<br>"),
+                                      shiny::helpText("Thing Self Link: "),
+                                      shiny::textOutput("thingSelfLink")
+                                      ),
+                  shiny::mainPanel(leaflet::leafletOutput("sensorMap", height = 550))
+    )
   )
 
 
@@ -30,23 +44,40 @@ shinyThings = function(){
       initMap()
     })
 
-    userInput  <- reactiveVal("")
+    userInput  <- shiny::reactiveVal("")
 
-    observeEvent(input$URLsubmit, {
+    shiny::observeEvent(input$urlShow, {
+      print(userInput())
+    })
+
+    shiny::observeEvent(input$URLsubmit, {
       userInputNew = paste0(input$inputUrl)
       userInput(userInputNew)
       output$sensorMap = leaflet::renderLeaflet({
-        expressMapFoI(isolate(userInput()))
+        expressMapLocations(shiny::isolate(userInput()))
       })
     })
 
-    observe(
-      {
-        click = input$sensorMap_marker_click
-        print(click)
-        output$markerId = shiny::renderText(input$sensorMap_marker_click$id)
-      }
-    )
+    shiny::observeEvent(input$sensorMap_marker_click, {
+      markerId = input$sensorMap_marker_click$id
+      locThings = getLocationThings(userInput(), input$sensorMap_marker_click$id)
+      print(locThings[1,1])
+      output$thingId = shiny::renderText({
+        toString(locThings[1,1])
+      })
+
+      output$thingDescription = shiny::renderText({
+        toString(locThings[1,3])
+      })
+
+      output$thingName = shiny::renderText({
+        toString(locThings[1,4])
+      })
+
+      output$thingSelfLink = shiny::renderText({
+        toString(locThings[1,2])
+      })
+    })
   }
 
   shiny::shinyApp(ui, server)

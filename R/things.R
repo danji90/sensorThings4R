@@ -4,20 +4,18 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
-#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
-#'x
+#'s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
+#'s1
 #'
-#'v = senseLocations("https://tasking-test.sensorup.com/v1.0")
-#'v
+#'s2 = senseThings("https://tasking-test.sensorup.com/v1.0")
+#'s2
 #'
-#'a = senseLocations("http://example.sensorup.com/v1.0")
-#'a
+#'s3 = senseThings("http://example.sensorup.com/v1.0")
+#'s3
 
 senseThings = function (url){
   thingsExt = "Things"
-  # query = "?$select=id,name"
   thingsUrl = paste0(url, "/", thingsExt)
-  print(thingsUrl)
   thingsJSON = jsonlite::fromJSON(thingsUrl)
   things = thingsJSON$value
   return(things)

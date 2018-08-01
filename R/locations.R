@@ -57,9 +57,32 @@ makeThingLocation = function(locationDF){
   locObj$long = as.numeric(locObj$long)
   locObj$lat = as.numeric(locObj$lat)
 
-  # Append class "thingLocation"
-  class(locObj) = append(class(locObj), "thingLocation")
+  # Append classes "thingObject" and "mapThing"
+  class(locObj) = append(class(locObj), "thingObject")
+  class(locObj) = append(class(locObj), "mapThing")
 
   return(locObj)
+}
+
+
+
+#' @title Gets the things (e.g. abstraction for data generating devices) at a location with specific ID
+#' @description Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R data frame
+#' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
+#' @param locId The location Id of a location within the sensor network (must be present within the SensorThings network of the input url!)
+#' @return A data frame object containing data from url/Location/Things
+#' @export
+#' @examples
+#'
+#'things = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
+#'things
+
+getLocationThings = function(url, locId){
+  locationsExt = "Locations"
+  thingsExt = "Things"
+  locThingsUrl = paste0(url, "/", locationsExt, "(", toString(locId), ")", "/", thingsExt)
+  locThingsJSON = jsonlite::fromJSON(locThingsUrl)
+  locThings = locThingsJSON$value
+  return(locThings)
 }
 

@@ -18,5 +18,5 @@ Creates markers from "thingLocation" objects and loads them onto a Leaflet map
 \examples{
 x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 y = makeThingLocation(x)
-mapThings(y)
+mapThingLocations(y)
 }

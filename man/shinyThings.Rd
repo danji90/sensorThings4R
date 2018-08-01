@@ -7,12 +7,12 @@
 shinyThings()
 }
 \value{
-Runs the ShinyThings app
+Runs the ShinyThings Shiny app
 }
 \description{
 Runs a SensorThings API data visualisation tool
 }
 \examples{
 
-shinyThingsApp()
+shinyThings()
 }

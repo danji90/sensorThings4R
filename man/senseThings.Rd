@@ -16,12 +16,12 @@ A data frame object containing data from url/Things
 This function parses SensorTHings JSON data and stores it in an R data frame
 }
 \examples{
-x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
-x
+s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
+s1
 
-v = senseLocations("https://tasking-test.sensorup.com/v1.0")
-v
+s2 = senseThings("https://tasking-test.sensorup.com/v1.0")
+s2
 
-a = senseLocations("http://example.sensorup.com/v1.0")
-a
+s3 = senseThings("http://example.sensorup.com/v1.0")
+s3
 }
