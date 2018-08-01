@@ -19,6 +19,6 @@ Gets the things (e.g. abstraction for data generating devices) at a location wit
 }
 \examples{
 
-things = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
-things
+thing = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
+thing
 }

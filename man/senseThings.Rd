@@ -23,5 +23,5 @@ s2 = senseThings("https://tasking-test.sensorup.com/v1.0")
 s2
 
 s3 = senseThings("http://example.sensorup.com/v1.0")
-s3
+class(s3)
 }

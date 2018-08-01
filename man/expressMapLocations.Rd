@@ -10,7 +10,7 @@ expressMapLocations(url)
 \item{url}{Path or URL to input file}
 }
 \description{
-Uses senseLocations(), makeThingLocation() and mapThings
+Uses senseLocations(), makeThingLocation() and mapThings to build leaflet map with a single function
 }
 \examples{
 map1 = expressMapLocations("https://tasking-test.sensorup.com/v1.0")

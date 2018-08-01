@@ -57,8 +57,8 @@ makeThingLocation = function(locationDF){
   locObj$long = as.numeric(locObj$long)
   locObj$lat = as.numeric(locObj$lat)
 
-  # Append classes "thingObject" and "mapThing"
-  class(locObj) = append(class(locObj), "thingObject")
+  # Append classes "thingLocation" and "mapThing"
+  class(locObj) = append(class(locObj), "thingLocation")
   class(locObj) = append(class(locObj), "mapThing")
 
   return(locObj)
@@ -74,8 +74,8 @@ makeThingLocation = function(locationDF){
 #' @export
 #' @examples
 #'
-#'things = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
-#'things
+#'thing = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
+#'thing
 
 getLocationThings = function(url, locId){
   locationsExt = "Locations"

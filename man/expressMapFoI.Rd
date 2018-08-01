@@ -10,7 +10,7 @@ expressMapFoI(url)
 \item{url}{Path or URL to input file}
 }
 \description{
-Uses senseFoI(), makeThingFoI() and mapThingFoI to build leaflet map directly
+Uses senseFoI(), makeThingFoI() and mapThingFoI to build leaflet map with a single function
 }
 \examples{
 leaf1 = expressMapFoI("https://tasking-test.sensorup.com/v1.0")
