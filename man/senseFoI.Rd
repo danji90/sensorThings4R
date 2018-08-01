@@ -2,22 +2,22 @@
 % Please edit documentation in R/foi.R
 \name{senseFoI}
 \alias{senseFoI}
-\title{Loads FoI data from any SensorThings API}
+\title{Load FeatureOfInterest data from SensorThings APIs}
 \usage{
 senseFoI(url)
 }
 \arguments{
-\item{url}{A SensorThings API url (string!) containing the data in SensorThings web standard}
+\item{url}{A SensorThings API base url (string!)}
 }
 \value{
-A data frame object containing data from url/FeaturesOfInterest
+A "foiObject" dataframe containing data from url/FeaturesOfInterest
 }
 \description{
-This function parses SensorThings JSON data and stores it in an R data frame
+This function parses FoI SensorThings JSON data and stores it in an R data frame. Contains the complete FoI data for further processing.
 }
 \examples{
 x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
-x
+head(x)
 
 \dontrun{
 v = senseFoI("https://tasking-test.sensorup.com/v1.0")

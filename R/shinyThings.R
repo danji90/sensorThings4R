@@ -1,5 +1,5 @@
 #' @title Shiny App for SensorThings API
-#' @description Runs a SensorThings API data visualisation tool. Loads all station locations on a map when given an input SensorThings URL. Station info is displayed when map markers are clicked.
+#' @description Runs a SensorThings API data visualisation tool. Loads all station Locations (url/Locations) on a map when given an input SensorThings URL. Associated Thing info is displayed when map markers are clicked.
 #' @return Shiny app UI
 #' @export
 #' @examples

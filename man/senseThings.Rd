@@ -2,18 +2,18 @@
 % Please edit documentation in R/things.R
 \name{senseThings}
 \alias{senseThings}
-\title{Loads location data from any SensorThings API}
+\title{Load Thing data from SensorThings APIs}
 \usage{
 senseThings(url)
 }
 \arguments{
-\item{url}{A SensorThings API url (string!) containing the data in SensorThings web standard}
+\item{url}{A SensorThings API base url (string!)}
 }
 \value{
-A data frame object containing data from url/Things
+A "thingObject" dataframe containing data from url/Things
 }
 \description{
-This function parses SensorTHings JSON data and stores it in an R data frame
+This function parses Thing SensorThings JSON data and stores it in an R data frame. Contains the complete Thing data for further processing.
 }
 \examples{
 s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")

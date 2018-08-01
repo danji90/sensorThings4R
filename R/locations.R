@@ -1,7 +1,7 @@
-#' @title Loads location data from any SensorThings API
-#' @description This function parses SensorTHings JSON data and stores it in an R data frame
+#' @title Loads location data from SensorThings APIs
+#' @description This function parses Location SensorThings JSON data and stores it in an R data frame. Contains the complete Location data for further processing.
 #' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
-#' @return A data frame object containing data from url/Things
+#' @return A "locationObject" dataframe containing data from url/Locations
 #' @export
 #' @examples
 #'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
@@ -27,7 +27,7 @@ senseLocations = function (url){
 #' @title Create a "thingLocation" data frame
 #' @description Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
 #' @param locationDF A data frame created using senseLocations (formatted according to SensorThings API)
-#' @return Data frame of class "thingLocation"
+#' @return Dataframe of classes "thingLocation" and "mapThing"
 #' @export
 #' @examples
 #'n = senseLocations("http://example.sensorup.com/v1.0")
@@ -73,11 +73,11 @@ makeThingLocation = function(locationDF){
 
 
 
-#' @title Gets the things (e.g. abstraction for data generating devices) at a location with specific ID
-#' @description Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R data frame
-#' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
+#' @title Get things at a location with specific ID
+#' @description Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R dataframe
+#' @param url A SensorThings API url (string!)
 #' @param locId The location Id of a location within the sensor network (must be present within the SensorThings network of the input url!)
-#' @return A data frame object containing data from url/Location(locId)/Things
+#' @return A dataframe containing data from url/Location(locId)/Things
 #' @export
 #' @examples
 #'thing = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
@@ -89,6 +89,7 @@ getLocationThings = function(url, locId){
   locThingsUrl = paste0(url, "/", locationsExt, "(", toString(locId), ")", "/", thingsExt)
   locThingsJSON = jsonlite::fromJSON(locThingsUrl)
   locThings = locThingsJSON$value
+  locThings$properties <- NULL
   return(locThings)
 }
 

@@ -10,7 +10,7 @@ makeThingLocation(locationDF)
 \item{locationDF}{A data frame created using senseLocations (formatted according to SensorThings API)}
 }
 \value{
-Data frame of class "thingLocation"
+Dataframe of classes "thingLocation" and "mapThing"
 }
 \description{
 Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"

@@ -2,18 +2,18 @@
 % Please edit documentation in R/foi.R
 \name{makeThingFoI}
 \alias{makeThingFoI}
-\title{Create a "thingFoI" data frame}
+\title{Create "thingFoI" data frame}
 \usage{
 makeThingFoI(FoIDF)
 }
 \arguments{
-\item{FoIDF}{A data frame created using senseFoI (formatted according to SensorThings API)}
+\item{FoIDF}{Dataframe of class "foiObject"}
 }
 \value{
-Data frame of class "thingFoI"
+Dataframe of class "thingFoI" and "mapThing"
 }
 \description{
-Creates a data frame from a previously parsed SensorThings JSON FoI object with the added class "thingFoI"
+Creates a data frame from "foiObject" data with the added classes "thingFoI" and "mapThing". "thingFoI" objects contain web links to the observations of every feature of interest, granting access to the observed data. "mapThing" objects can be imported onto a leaflet map.
 }
 \examples{
 n = senseFoI("http://example.sensorup.com/v1.0")

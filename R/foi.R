@@ -1,11 +1,11 @@
-#' @title Loads FoI data from any SensorThings API
-#' @description This function parses SensorThings JSON data and stores it in an R data frame
-#' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
-#' @return A data frame object containing data from url/FeaturesOfInterest
+#' @title Load FeatureOfInterest data from SensorThings APIs
+#' @description This function parses FoI SensorThings JSON data and stores it in an R data frame. Contains the complete FoI data for further processing.
+#' @param url A SensorThings API base url (string!)
+#' @return A "foiObject" dataframe containing data from url/FeaturesOfInterest
 #' @export
 #' @examples
 #'x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
-#'x
+#'head(x)
 #'
 #'\dontrun{
 #'v = senseFoI("https://tasking-test.sensorup.com/v1.0")
@@ -24,10 +24,10 @@ senseFoI = function (url){
   return(FoIs)
 }
 
-#' @title Create a "thingFoI" data frame
-#' @description Creates a data frame from a previously parsed SensorThings JSON FoI object with the added class "thingFoI"
-#' @param FoIDF A data frame created using senseFoI (formatted according to SensorThings API)
-#' @return Data frame of class "thingFoI"
+#' @title Create "thingFoI" data frame
+#' @description Creates a data frame from "foiObject" data with the added classes "thingFoI" and "mapThing". "thingFoI" objects contain web links to the observations of every feature of interest, granting access to the observed data. "mapThing" objects can be imported onto a leaflet map.
+#' @param FoIDF Dataframe of class "foiObject"
+#' @return Dataframe of class "thingFoI" and "mapThing"
 #' @export
 #' @examples
 #'n = senseFoI("http://example.sensorup.com/v1.0")
@@ -36,6 +36,7 @@ senseFoI = function (url){
 
 makeThingFoI = function(FoIDF){
 
+  # Check if input is a foiObject
   if (inherits(FoIDF,"foiObject")){
 
   # Limit to point data

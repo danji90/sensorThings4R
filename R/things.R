@@ -1,7 +1,7 @@
-#' @title Loads location data from any SensorThings API
-#' @description This function parses SensorTHings JSON data and stores it in an R data frame
-#' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
-#' @return A data frame object containing data from url/Things
+#' @title Load Thing data from SensorThings APIs
+#' @description This function parses Thing SensorThings JSON data and stores it in an R data frame. Contains the complete Thing data for further processing.
+#' @param url A SensorThings API base url (string!)
+#' @return A "thingObject" dataframe containing data from url/Things
 #' @export
 #' @examples
 #'s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")

@@ -2,20 +2,20 @@
 % Please edit documentation in R/locations.R
 \name{getLocationThings}
 \alias{getLocationThings}
-\title{Gets the things (e.g. abstraction for data generating devices) at a location with specific ID}
+\title{Get things at a location with specific ID}
 \usage{
 getLocationThings(url, locId)
 }
 \arguments{
-\item{url}{A SensorThings API url (string!) containing the data in SensorThings web standard}
+\item{url}{A SensorThings API url (string!)}
 
 \item{locId}{The location Id of a location within the sensor network (must be present within the SensorThings network of the input url!)}
 }
 \value{
-A data frame object containing data from url/Location(locId)/Things
+A dataframe containing data from url/Location(locId)/Things
 }
 \description{
-Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R data frame
+Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R dataframe
 }
 \examples{
 thing = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
