@@ -88,47 +88,62 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sensorThings4R)</code></pre></div>
 <p>The package includes the following features:</p>
 <ul>
-<li>Functions that store the SensorThings API Locations and FeaturesOfInterest in a data frame.</li>
+<li>Functions that store the SensorThings API Locations and FeaturesOfInterest in a dataframe. Depending on the function, the new dataframes are assigned the classes “locationObject” or “foiObject”.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load SensorThings locations</span>
-<span class="kw">library</span>(sensorThings4R)
-x =<span class="st"> </span><span class="kw">senseLocations</span>(<span class="st">&quot;https://toronto-bike-snapshot.sensorup.com/v1.0&quot;</span>)
-<span class="kw">head</span>(x, <span class="dt">n=</span>1L)</code></pre></div>
-<pre><code>##   @iot.id
-## 1  206048
-##                                                       @iot.selfLink
-## 1 https://toronto-bike-snapshot.sensorup.com/v1.0/Locations(206048)
-##                                                                                            description
-## 1 The geographic location with coordinates for the Toronto bike share station Bloor St / Brunswick Ave
-##                            name             encodingType
-## 1 7061:Bloor St / Brunswick Ave application/vnd.geo+json
-##   location.coordinates location.type
-## 1  -79.40722, 43.66588         Point
-##                                                  Things@iot.navigationLink
-## 1 https://toronto-bike-snapshot.sensorup.com/v1.0/Locations(206048)/Things
-##                                                  HistoricalLocations@iot.navigationLink
-## 1 https://toronto-bike-snapshot.sensorup.com/v1.0/Locations(206048)/HistoricalLocations</code></pre>
+loc =<span class="st"> </span><span class="kw">senseLocations</span>(<span class="st">&quot;https://toronto-bike-snapshot.sensorup.com/v1.0&quot;</span>)
+<span class="kw">class</span>(loc)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;     &quot;locationObject&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load SensorThings FoIs</span>
-x =<span class="st"> </span><span class="kw">senseFoI</span>(<span class="st">&quot;https://toronto-bike-snapshot.sensorup.com/v1.0&quot;</span>)
-<span class="kw">head</span>(x,<span class="dt">n=</span>1L)</code></pre></div>
-<pre><code>##   @iot.id
-## 1  206052
-##                                                                @iot.selfLink
-## 1 https://toronto-bike-snapshot.sensorup.com/v1.0/FeaturesOfInterest(206052)
-##                                                                                                                              description
-## 1 Generated using location details: The geographic location with coordinates for the Toronto bike share station Bloor St / Brunswick Ave
-##                            name             encodingType
-## 1 7061:Bloor St / Brunswick Ave application/vnd.geo+json
-##   feature.coordinates feature.type
-## 1 -79.40722, 43.66588        Point
-##                                                           Observations@iot.navigationLink
-## 1 https://toronto-bike-snapshot.sensorup.com/v1.0/FeaturesOfInterest(206052)/Observations</code></pre>
+foi =<span class="st"> </span><span class="kw">senseFoI</span>(<span class="st">&quot;https://toronto-bike-snapshot.sensorup.com/v1.0&quot;</span>)
+<span class="kw">class</span>(foi)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot; &quot;foiObject&quot;</code></pre>
+<p>     </p>
 <ul>
-<li>A <a href="https://shiny.rstudio.com">Shiny Application</a> to display the locations in a sensor network and the statin details</li>
+<li>A function that stores SensorThings API Things in a dataframe, adding a “thingObject” class to it. Potential new methods specific to this class are to be developed in the future.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s1 =<span class="st"> </span><span class="kw">senseThings</span>(<span class="st">&quot;https://toronto-bike-snapshot.sensorup.com/v1.0&quot;</span>)
+<span class="kw">class</span>(s1)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;  &quot;thingObject&quot;</code></pre>
+<p>     </p>
+<ul>
+<li>Functions to convert “locationObject” and “foiObject” into dataframes capable of being loaded to a leaflet map. The output dataframes have the added class “mapThing”.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n =<span class="st"> </span><span class="kw">senseLocations</span>(<span class="st">&quot;http://example.sensorup.com/v1.0&quot;</span>)
+u =<span class="st"> </span><span class="kw">makeThingLocation</span>(n)
+<span class="kw">head</span>(u)</code></pre></div>
+<pre><code>##        id               address
+## 1 8773509               SU-NW-5
+## 2 8668535                VU-W-1
+## 3 8480396                    NA
+## 4 6973350 SensorUp HQ2 #exclude
+## 5 6604000              VU-SW-13
+## 6 6535168              VU-SW-12
+##                                              selfLink featureType
+## 1 http://example.sensorup.com/v1.0/Locations(8773509)       Point
+## 2 http://example.sensorup.com/v1.0/Locations(8668535)       Point
+## 3 http://example.sensorup.com/v1.0/Locations(8480396)       Point
+## 4 http://example.sensorup.com/v1.0/Locations(6973350)       Point
+## 5 http://example.sensorup.com/v1.0/Locations(6604000)       Point
+## 6 http://example.sensorup.com/v1.0/Locations(6535168)       Point
+##        long      lat
+## 1 -114.1619 51.08691
+## 2 -114.2645 51.06347
+## 3 -114.1236 50.91318
+## 4 -114.1300 51.08300
+## 5 -114.0845 50.93800
+## 6 -114.1374 51.04270</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(u)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;    &quot;thingLocation&quot; &quot;mapThing&quot;</code></pre>
+<p>     </p>
+<ul>
+<li>A <a href="https://shiny.rstudio.com">Shiny Application</a> to display the locations in a sensor network and the station details. The app is also stored within a function.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyThings</span>()</code></pre></div>
+<p>     </p>
 </div>
 <div id="more-examples" class="section level2">
 <h2>More Examples</h2>

@@ -20,6 +20,7 @@ senseLocations = function (url){
   locUrl = paste0(url, "/", locationsExt)
   locJSON = jsonlite::fromJSON(locUrl)
   locations = locJSON$value
+  class(locations) = append(class(locations), "locationObject")
   return(locations)
 }
 
@@ -34,6 +35,8 @@ senseLocations = function (url){
 #'head(u)
 
 makeThingLocation = function(locationDF){
+
+  if (inherits(locationDF,"locationObject")){
 
   # Limit to point data
   locationDF = locationDF[locationDF$location$type=="Point", ]
@@ -63,6 +66,9 @@ makeThingLocation = function(locationDF){
   class(locObj) = append(class(locObj), "mapThing")
 
   return(locObj)
+  } else {
+    stop("This is not a locationObject")
+  }
 }
 
 

@@ -20,6 +20,7 @@ senseFoI = function (url){
   FoIUrl = paste0(url, "/", FoIExt)
   FoIJSON = jsonlite::fromJSON(FoIUrl)
   FoIs = FoIJSON$value
+  class(FoIs) = append(class(FoIs), "foiObject")
   return(FoIs)
 }
 
@@ -34,6 +35,8 @@ senseFoI = function (url){
 #'head(u)
 
 makeThingFoI = function(FoIDF){
+
+  if (inherits(FoIDF,"foiObject")){
 
   # Limit to point data
   FoIDF = FoIDF[FoIDF$feature$type=="Point", ]
@@ -64,5 +67,8 @@ makeThingFoI = function(FoIDF){
   class(foiObj) = append(class(foiObj), "mapThing")
 
   return(foiObj)
+  } else {
+    stop("This is not a foiObject")
+  }
 }
 

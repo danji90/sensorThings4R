@@ -1,12 +1,26 @@
 ## ------------------------------------------------------------------------
-# Load SensorThings locations
 library(sensorThings4R)
-x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
-head(x, n=1L)
+
+## ------------------------------------------------------------------------
+# Load SensorThings locations
+loc = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
+class(loc)
+
 
 # Load SensorThings FoIs
-x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
-head(x,n=1L)
+foi = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
+class(foi)
+
+## ------------------------------------------------------------------------
+s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
+class(s1)
+
+## ------------------------------------------------------------------------
+n = senseLocations("http://example.sensorup.com/v1.0")
+u = makeThingLocation(n)
+head(u)
+
+class(u)
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  shinyThings()

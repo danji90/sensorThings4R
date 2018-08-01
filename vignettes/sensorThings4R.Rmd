@@ -9,16 +9,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
----
-runtime: shiny
-output: html_document
----
-
-<style>
-body {
-text-align: justify}
-</style>
-
 ## Introduction
 
 The [OGC SensorThings API](http://developers.sensorup.com/docs/) is a web standard for wireless sensor networks (WSN) and aims to provide an interoperable, unified framework for handling sensor data. The standard is based on elements from [OGC Sensor Web Enablement (SWE)](http://www.opengeospatial.org/ogc/markets-technologies/swe), but is designed to provide interconnectivity between Internet of Things (IoT) devices, data and applications over the web. By implementing SensorThings into WSNs, developers don't have to worry about heterogeneity of devices, data formats and web protocols. Web development using standards facilitates easier data accessibility, higher interoperability, and eventually lowers the costs of sensor and gateway providers.
@@ -36,30 +26,64 @@ SensorThings API relies on a set of classes, that are interrelated using web URL
 
 ## Functions
 
+```{r}
+library(sensorThings4R)
+```
+
+
 The package includes the following features:
 
-- Functions that store the SensorThings API Locations and FeaturesOfInterest in a data frame.
+- Functions that store the SensorThings API Locations and FeaturesOfInterest in a dataframe. Depending on the function, the new dataframes are assigned the classes "locationObject" or "foiObject".
 
 ```{r}
 # Load SensorThings locations
-library(sensorThings4R)
-x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
-head(x, n=1L)
+loc = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
+class(loc)
+
 
 # Load SensorThings FoIs
-x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
-head(x,n=1L)
+foi = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
+class(foi)
 ```
 
-- 
+&nbsp;
+&nbsp;
+&nbsp;
 
+- A function that stores SensorThings API Things in a dataframe, adding a "thingObject" class to it. Potential new methods specific to this class are to be developed in the future.
 
-- A [Shiny Application](https://shiny.rstudio.com) to display the locations in a sensor network and the statin details 
+```{r}
+s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
+class(s1)
+```
 
-```{r, echo=FALSE}
+&nbsp;
+&nbsp;
+&nbsp;
+
+- Functions to convert "locationObject" and "foiObject" into dataframes capable of being loaded to a leaflet map. The output dataframes have the added class "mapThing".
+
+```{r}
+n = senseLocations("http://example.sensorup.com/v1.0")
+u = makeThingLocation(n)
+head(u)
+
+class(u)
+```
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+- A [Shiny Application](https://shiny.rstudio.com) to display the locations in a sensor network and the station details. The app is also stored within a function.
+
+```{r, eval=FALSE}
 shinyThings()
 ```
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## More Examples
 
