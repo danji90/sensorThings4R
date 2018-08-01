@@ -12,7 +12,7 @@ getLocationThings(url, locId)
 \item{locId}{The location Id of a location within the sensor network (must be present within the SensorThings network of the input url!)}
 }
 \value{
-A data frame object containing data from url/Location/Things
+A data frame object containing data from url/Location(locId)/Things
 }
 \description{
 Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R data frame

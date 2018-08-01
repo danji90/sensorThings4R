@@ -16,6 +16,8 @@ Uses senseFoI(), makeThingFoI() and mapThingFoI to build leaflet map with a sing
 leaf1 = expressMapFoI("https://tasking-test.sensorup.com/v1.0")
 leaf1
 
+\dontrun{
 leaf2 = expressMapFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 leaf2
+}
 }

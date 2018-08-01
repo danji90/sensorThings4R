@@ -18,6 +18,6 @@ Creates a data frame from a previously parsed SensorThings JSON location object 
 \examples{
 n = senseLocations("http://example.sensorup.com/v1.0")
 u = makeThingLocation(n)
-u
+head(u)
 
 }

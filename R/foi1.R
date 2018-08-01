@@ -1,17 +1,18 @@
-#' @title Loads location data from any SensorThings API
-#' @description This function parses SensorTHings JSON data and stores it in an R data frame
+#' @title Loads FoI data from any SensorThings API
+#' @description This function parses SensorThings JSON data and stores it in an R data frame
 #' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
-#' @return A data frame object containing data from url/Things
+#' @return A data frame object containing data from url/FeaturesOfInterest
 #' @export
 #' @examples
 #'x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'x
-#'
+#'\dontrun{
 #'v = senseFoI("https://tasking-test.sensorup.com/v1.0")
 #'v
 #'
 #'a = senseFoI("http://example.sensorup.com/v1.0")
 #'a
+#'}
 
 senseFoI = function (url){
   FoIExt = "FeaturesOfInterest"
@@ -21,15 +22,15 @@ senseFoI = function (url){
   return(FoIs)
 }
 
-#' @title Create a "thingLocation" data frame
-#' @description Creates a data frame from a previously parsed SensorThings JSON location object with the added class "thingLocation"
-#' @param FoIDF A data frame created using senseLocations (formatted according to SensorThings API)
-#' @return Data frame of class "thingLocation"
+#' @title Create a "thingFoI" data frame
+#' @description Creates a data frame from a previously parsed SensorThings JSON FoI object with the added class "thingFoI"
+#' @param FoIDF A data frame created using senseFoI (formatted according to SensorThings API)
+#' @return Data frame of class "thingFoI"
 #' @export
 #' @examples
 #'n = senseFoI("http://example.sensorup.com/v1.0")
 #'u = makeThingFoI(n)
-#'u
+#'head(u)
 #'
 
 makeThingFoI = function(FoIDF){

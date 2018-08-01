@@ -16,12 +16,14 @@ A data frame object containing data from url/Things
 This function parses SensorTHings JSON data and stores it in an R data frame
 }
 \examples{
+\dontrun{
 s1 = senseThings("https://toronto-bike-snapshot.sensorup.com/v1.0")
-s1
+head(s1)
 
 s2 = senseThings("https://tasking-test.sensorup.com/v1.0")
 s2
 
 s3 = senseThings("http://example.sensorup.com/v1.0")
 class(s3)
+}
 }

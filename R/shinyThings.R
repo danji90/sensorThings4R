@@ -15,7 +15,8 @@ shinyThings = function(){
     shiny::sidebarLayout(position = "right",
                   shiny::sidebarPanel(shiny::textInput("inputUrl", "Type SensorThings base URL here and press enter"),
                                       shiny::actionButton("URLsubmit", "Update map", shiny::icon("refresh")),
-                                      #shiny::actionButton("urlShow", "show url", shiny::icon("refresh")),
+                                      # Show URL button, used for testing
+                                      #shiny::actionButton("urlShow", "Show URL", shiny::icon("refresh")),
                                       shiny::HTML("<br><br>"),
                                       shiny::helpText("Station ID: "),
                                       shiny::textOutput("thingId"),
@@ -45,9 +46,10 @@ shinyThings = function(){
 
     userInput  <- shiny::reactiveVal("")
 
-    shiny::observeEvent(input$urlShow, {
-      print(userInput())
-    })
+    # Function for the "Show URL" button, used for testing
+    # shiny::observeEvent(input$urlShow, {
+    #   print(userInput())
+    # })
 
     shiny::observeEvent(input$URLsubmit, {
       userInputNew = paste0(input$inputUrl)
@@ -58,7 +60,6 @@ shinyThings = function(){
     })
 
     shiny::observeEvent(input$sensorMap_marker_click, {
-      print(input$sensorMap_marker_click)
       markerId = input$sensorMap_marker_click$id
       locThings = getLocationThings(userInput(), input$sensorMap_marker_click$id)
       print(locThings[1,1])

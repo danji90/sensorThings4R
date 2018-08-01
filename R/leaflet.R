@@ -27,8 +27,10 @@ mapThingLocations = function(locDf){
 #'map1 = expressMapLocations("https://tasking-test.sensorup.com/v1.0")
 #'map1
 #'
+#'\dontrun{
 #'map2 = expressMapLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'map2
+#'}
 
 
 expressMapLocations = function(url){
@@ -66,8 +68,10 @@ mapThingFoI = function(locDf){
 #'leaf1 = expressMapFoI("https://tasking-test.sensorup.com/v1.0")
 #'leaf1
 #'
+#'\dontrun{
 #'leaf2 = expressMapFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'leaf2
+#'}
 
 expressMapFoI = function(url){
   x = senseFoI(url)

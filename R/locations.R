@@ -4,14 +4,16 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
+#'\dontrun{
 #'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
-#'x
+#'head(x)
 #'
 #'v = senseLocations("https://tasking-test.sensorup.com/v1.0")
 #'v
 #'
 #'a = senseLocations("http://example.sensorup.com/v1.0")
 #'a
+#'}
 
 senseLocations = function (url){
   locationsExt = "Locations"
@@ -29,7 +31,7 @@ senseLocations = function (url){
 #' @examples
 #'n = senseLocations("http://example.sensorup.com/v1.0")
 #'u = makeThingLocation(n)
-#'u
+#'head(u)
 #'
 
 makeThingLocation = function(locationDF){
@@ -70,7 +72,7 @@ makeThingLocation = function(locationDF){
 #' @description Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R data frame
 #' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
 #' @param locId The location Id of a location within the sensor network (must be present within the SensorThings network of the input url!)
-#' @return A data frame object containing data from url/Location/Things
+#' @return A data frame object containing data from url/Location(locId)/Things
 #' @export
 #' @examples
 #'
