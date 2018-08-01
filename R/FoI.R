@@ -4,13 +4,13 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
-#'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
+#'x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'x
 #'
-#'v = senseLocations("https://tasking-test.sensorup.com/v1.0")
+#'v = senseFoI("https://tasking-test.sensorup.com/v1.0")
 #'v
 #'
-#'a = senseLocations("http://example.sensorup.com/v1.0")
+#'a = senseFoI("http://example.sensorup.com/v1.0")
 #'a
 
 senseFoI = function (url){
@@ -27,8 +27,8 @@ senseFoI = function (url){
 #' @return Data frame of class "thingLocation"
 #' @export
 #' @examples
-#'n = senseLocations("http://example.sensorup.com/v1.0")
-#'u = makeThingLocation(n)
+#'n = senseFoI("http://example.sensorup.com/v1.0")
+#'u = makeThingFoI(n)
 #'u
 #'
 
