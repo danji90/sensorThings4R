@@ -4,10 +4,10 @@
 #' @return A data frame object containing data from url/Things
 #' @export
 #' @examples
-#'\dontrun{
 #'x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'head(x)
 #'
+#'\dontrun{
 #'v = senseLocations("https://tasking-test.sensorup.com/v1.0")
 #'v
 #'
@@ -32,7 +32,6 @@ senseLocations = function (url){
 #'n = senseLocations("http://example.sensorup.com/v1.0")
 #'u = makeThingLocation(n)
 #'head(u)
-#'
 
 makeThingLocation = function(locationDF){
 
@@ -75,7 +74,6 @@ makeThingLocation = function(locationDF){
 #' @return A data frame object containing data from url/Location(locId)/Things
 #' @export
 #' @examples
-#'
 #'thing = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
 #'thing
 

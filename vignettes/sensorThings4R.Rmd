@@ -1,0 +1,75 @@
+---
+title: "sensorThings4R"
+author: "Daniel Marsh-Hunn"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+---
+runtime: shiny
+output: html_document
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+## Introduction
+
+The [OGC SensorThings API](http://developers.sensorup.com/docs/) is a web standard for wireless sensor networks (WSN) and aims to provide an interoperable, unified framework for handling sensor data. The standard is based on elements from [OGC Sensor Web Enablement (SWE)](http://www.opengeospatial.org/ogc/markets-technologies/swe), but is designed to provide interconnectivity between Internet of Things (IoT) devices, data and applications over the web. By implementing SensorThings into WSNs, developers don't have to worry about heterogeneity of devices, data formats and web protocols. Web development using standards facilitates easier data accessibility, higher interoperability, and eventually lowers the costs of sensor and gateway providers.
+
+
+## Motivation
+
+The motivation for creating an R implementation of the SensorThings API emerged from a project in the scope of the author's master thesis. The project includes making an IoT sensor network in an agricultural environment SensorThings compliant. Since R is one of the leading programming environments for statistics and data analysis, but also includes software development functionalities, the idea materialised to write a package that uses the SensorThingsAPI to import data from the web. After importing the data, they can be used for further analysis. Furthermore, an interactive data visualisation tool for displaying the sensor locations and the station details was created using the functions within the package.
+
+
+## How it works
+
+SensorThings API relies on a set of classes, that are interrelated using web URLs. This package defines  functions with the base URL of a SensorThings API (e.g. [https://toronto-bike-snapshot.sensorup.com/v1.0](https://toronto-bike-snapshot.sensorup.com/v1.0)), which loads details about all the classes as a JSON file. By adding parameters to the base URL, the user can target specific classes, data and attributes. The package mostly compiles SensorThings URLs, parses the JSON data and stores them in R data frames for further usage.
+
+
+## Functions
+
+The package includes the following features:
+
+- Functions that store the SensorThings API Locations and FeaturesOfInterest in a data frame.
+
+```{r}
+# Load SensorThings locations
+library(sensorThings4R)
+x = senseLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
+head(x, n=1L)
+
+# Load SensorThings FoIs
+x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
+head(x,n=1L)
+```
+
+- 
+
+
+- A [Shiny Application](https://shiny.rstudio.com) to display the locations in a sensor network and the statin details 
+
+```{r, echo=FALSE}
+shinyThings()
+```
+
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))

@@ -24,10 +24,10 @@ mapThingLocations = function(locDf){
 #' @param url Path or URL to input file
 #' @export
 #' @examples
+#'\dontrun{
 #'map1 = expressMapLocations("https://tasking-test.sensorup.com/v1.0")
 #'map1
 #'
-#'\dontrun{
 #'map2 = expressMapLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'map2
 #'}
@@ -65,10 +65,10 @@ mapThingFoI = function(locDf){
 #' @param url Path or URL to input file
 #' @export
 #' @examples
+#'\dontrun{
 #'leaf1 = expressMapFoI("https://tasking-test.sensorup.com/v1.0")
 #'leaf1
 #'
-#'\dontrun{
 #'leaf2 = expressMapFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'leaf2
 #'}

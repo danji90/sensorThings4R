@@ -3,8 +3,9 @@
 #' @return Shiny app UI
 #' @export
 #' @examples
-#'
+#'\dontrun{
 #'shinyThings()
+#'}
 
 shinyThings = function(){
   ui = shiny::fluidPage(

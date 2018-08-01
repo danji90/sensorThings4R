@@ -13,6 +13,7 @@ Shiny app UI
 Runs a SensorThings API data visualisation tool. Loads all station locations on a map when given an input SensorThings URL. Station info is displayed when map markers are clicked
 }
 \examples{
-
+\dontrun{
 shinyThings()
+}
 }

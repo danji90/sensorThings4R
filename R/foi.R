@@ -6,6 +6,7 @@
 #' @examples
 #'x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")
 #'x
+#'
 #'\dontrun{
 #'v = senseFoI("https://tasking-test.sensorup.com/v1.0")
 #'v
@@ -31,7 +32,6 @@ senseFoI = function (url){
 #'n = senseFoI("http://example.sensorup.com/v1.0")
 #'u = makeThingFoI(n)
 #'head(u)
-#'
 
 makeThingFoI = function(FoIDF){
 

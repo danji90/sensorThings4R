@@ -18,7 +18,6 @@ A data frame object containing data from url/Location(locId)/Things
 Gets the things (e.g. abstraction for data generating devices) at a location with specific ID and stores their information in an R data frame
 }
 \examples{
-
 thing = getLocationThings("https://toronto-bike-snapshot.sensorup.com/v1.0", 1462)
 thing
 }

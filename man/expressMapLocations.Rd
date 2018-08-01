@@ -13,10 +13,10 @@ expressMapLocations(url)
 Uses senseLocations(), makeThingLocation() and mapThings to build leaflet map with a single function
 }
 \examples{
+\dontrun{
 map1 = expressMapLocations("https://tasking-test.sensorup.com/v1.0")
 map1
 
-\dontrun{
 map2 = expressMapLocations("https://toronto-bike-snapshot.sensorup.com/v1.0")
 map2
 }
