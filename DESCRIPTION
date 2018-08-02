@@ -8,8 +8,7 @@ Description: SensorThings4R contains a set of functions to easily access, proces
         using the OGC sensor web standard SensorThings.
 License: GPL-2
 Encoding: UTF-8
-LazyData: true
-Imports: jsonlite, leaflet, shiny, dplyr, methods
+Imports: jsonlite, leaflet, shiny, dplyr
 Suggests: knitr,rmarkdown, kableExtra
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr

@@ -51,6 +51,7 @@ mapThingFoI(k)
 
 ## ----error=TRUE----------------------------------------------------------
 mapThingFoI(j)
+class(j)
 
 ## ---- out.width='100%'---------------------------------------------------
 leaf1 = expressMapFoI("https://tasking-test.sensorup.com/v1.0")
