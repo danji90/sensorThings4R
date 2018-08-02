@@ -46,6 +46,7 @@ expressMapLocations = function(url){
 #' @description Creates markers from "mapThing" objects and loads them onto a Leaflet map
 #' @param foiDf Data frame with class "thingFoI" and "mapThing"
 #' @return A list object containing information from url/FeaturesOfInterest
+#' @importFrom dplyr %>%
 #' @export
 #' @examples
 #'x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")

@@ -26,7 +26,17 @@ The motivation for creating an R implementation of the SensorThings API emerged 
 
 ## How it works
 
-SensorThings API relies on a set of classes that are interrelated using web URLs. Starting at a base URL (e.g. [https://toronto-bike-snapshot.sensorup.com/v1.0](https://toronto-bike-snapshot.sensorup.com/v1.0)), API data can be accessed by adding parameters to it. sensorThings4R makes use of the concept by defining a set of functions that compile SensorThings URLs and various parameters, use these in a http request, parse the resulting JSON data and store them in R dataframes for further usage.
+SensorThings API relies on a set of eight classes (see **Fig 1**) that are interrelated using web URLs. Starting at a base URL (e.g. [https://toronto-bike-snapshot.sensorup.com/v1.0](https://toronto-bike-snapshot.sensorup.com/v1.0)), API data can be accessed by adding parameters to it. sensorThings4R makes use of the concept by defining a set of functions that compile SensorThings URLs and various parameters, use these in a http request, parse the resulting JSON data and store them in R dataframes for further usage.
+
+&nbsp;
+&nbsp;
+
+```{r pressure, echo=FALSE, fig.cap="**Fig 1:** SensorThings Data Model", out.width = '100%'}
+knitr::include_graphics("STA-1.0-UML.jpg")
+```
+
+&nbsp;
+&nbsp;
 
 ## Installation
 
@@ -162,4 +172,40 @@ shinyThings()
 &nbsp;
 &nbsp;
 &nbsp;
+
+
+## Challenges
+
+The main aim of the package was to access SensorThings data and visualise them in R interactively. The first task was displaying the stations on a map, which worked pretty smoothly. The second task was to display data from the API.
+
+The second task proved to be a very tricky affair, since the information needed to plot the data is not all stored in one JSON file, but rather in multiple ones. 
+
+To give an example:
+For a FeatureOfInterest with ID = 1586 I want to plot all the observations of a certain observed property. FeatureOfInterest and Observations have a direct relation in the SensorThings schema, meaning [https://toronto-bike-snapshot.sensorup.com/v1.0/FeaturesOfInterest(1586)/Observations](https://toronto-bike-snapshot.sensorup.com/v1.0/FeaturesOfInterest(1586)/Observations) will request all the observations measured at the FeatureOfInterest(1586). But the requested JSON file does not include information about the measured observed property, so plotting these observations might include different measured parameters. To inquire about  observations' observed property, for each observation two API requests have to be called, navigating to the ObservedProperty class. Consequently, a set of 100 observations requires 200 http requests to classify each observation's observed property. 
+
+An approach was made to loop over the rows of a dataframe containing 100 observations, extracting the necessary plotting data and storing it in a dataframe. Results were poor regarding performance, taking over 10 minutes to gather all the necessary information. This test was made using WWU Campus WIFI, which has a sound bandwidth. Performance would be considerably worse in slower internet connections. Furthermore, larger amounts of data would increase computing time even further. A better developed code may enhance performance, which was not possible in this project considering the limited time frame.
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+## Conclusions & Future Work
+
+The results of sensorThings4R are mostly satisfactory, especially considering the provided project time frame. The package contains functions to successfully import SensorThings geographical data into R directly from the web. The SensorThings web standard ensures that generic functions provide standarised results using any SensorThings API base URL. The shiny app ShinyThings uses the functions from the package as an example of how the API can be used for displaying data in an interactive and responsive way.
+
+However, a somewhat disappointing result was the unfeasibility of plotting observations from the SensorThings API. This would be the most interesting and most useful feature to implement. It was concluded that R has difficulties handling large amounts of http requests with the attempted approach to plot larger amounts of data. A possible reason could be that R is not designed for web development. 
+
+Future work could include accessing the SensorThings API data from different angles. The packages for sensor data [sos4R](https://github.com/52North/sos4R) and [opensensemapR](https://github.com/noerw/opensensmapR) may suggest better solutions for accessing data in the web. Another approach might be outsourcing the http requests (e.g. using a web browser) and then importing them into R. 
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+## References
+
+- [SensorUp Developers Centre](http://developers.sensorup.com/docs/)
+- [OGC SensorThings API - Documentation](http://docs.opengeospatial.org/is/15-078r6/15-078r6.html)
+- [OGC SensorThings - GitHub](https://github.com/opengeospatial/sensorthings)
+
 

@@ -1,3 +1,6 @@
+## ----pressure, echo=FALSE, fig.cap="**Fig 1:** SensorThings Data Model", out.width = '100%'----
+knitr::include_graphics("STA-1.0-UML.jpg")
+
 ## ---- eval=FALSE---------------------------------------------------------
 #  devtools::install_github("danji90/sensorThings4R")
 
