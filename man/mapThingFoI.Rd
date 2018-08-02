@@ -4,16 +4,16 @@
 \alias{mapThingFoI}
 \title{Display SensorThing Features of Interest on a map}
 \usage{
-mapThingFoI(locDf)
+mapThingFoI(foiDf)
 }
 \arguments{
-\item{locDf}{Data frame with class "thingObject"}
+\item{foiDf}{Data frame with class "mapThing"}
 }
 \value{
 A list object containing information from url/FeaturesOfInterest
 }
 \description{
-Creates markers from "thingObject" objects and loads them onto a Leaflet map
+Creates markers from "mapThing" objects and loads them onto a Leaflet map
 }
 \examples{
 x = senseFoI("https://toronto-bike-snapshot.sensorup.com/v1.0")

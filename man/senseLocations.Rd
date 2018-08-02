@@ -2,7 +2,7 @@
 % Please edit documentation in R/locations.R
 \name{senseLocations}
 \alias{senseLocations}
-\title{Loads location data from SensorThings APIs}
+\title{Loads Location data from SensorThings APIs}
 \usage{
 senseLocations(url)
 }

@@ -1,4 +1,4 @@
-#' @title Loads location data from SensorThings APIs
+#' @title Loads Location data from SensorThings APIs
 #' @description This function parses Location SensorThings JSON data and stores it in an R data frame. Contains the complete Location data for further processing.
 #' @param url A SensorThings API url (string!) containing the data in SensorThings web standard
 #' @return A "locationObject" dataframe containing data from url/Locations

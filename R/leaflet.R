@@ -11,7 +11,7 @@
 
 mapThingLocations = function(locDf){
   if (inherits(locDf,"mapThing")){
-    map <- leaflet::leaflet(data=locDf) %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(address), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
+    map <- leaflet::leaflet(data=locDf) %>% leaflet::addTiles() %>% leaflet::addCircleMarkers(radius = 8, color = "blue", fillOpacity = 0.6, ~long, ~lat, popup = ~as.character(address), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
     stop("This is not a mapThing object")
@@ -43,8 +43,8 @@ expressMapLocations = function(url){
 
 
 #' @title Display SensorThing Features of Interest on a map
-#' @description Creates markers from "thingObject" objects and loads them onto a Leaflet map
-#' @param locDf Data frame with class "thingObject"
+#' @description Creates markers from "mapThing" objects and loads them onto a Leaflet map
+#' @param foiDf Data frame with class "mapThing"
 #' @return A list object containing information from url/FeaturesOfInterest
 #' @export
 #' @examples
@@ -52,12 +52,12 @@ expressMapLocations = function(url){
 #'y = makeThingFoI(x)
 #'mapThingFoI(y)
 
-mapThingFoI = function(locDf){
-  if (inherits(locDf,"mapThing")){
-    map <- leaflet::leaflet(data=locDf)  %>% leaflet::addTiles() %>% leaflet::addMarkers(~long, ~lat, popup = ~as.character(name), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
+mapThingFoI = function(foiDf){
+  if (inherits(foiDf,"mapThing")){
+    map <- leaflet::leaflet(data=foiDf) %>% leaflet::addTiles() %>% leaflet::addCircleMarkers(radius = 8, color = "red", fillOpacity = 0.6, ~long, ~lat, popup = ~as.character(name), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
-    stop("This is not a mapThing")
+    stop("This is not a mapThing object")
   }
 }
 
