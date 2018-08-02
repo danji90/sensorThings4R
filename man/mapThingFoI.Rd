@@ -7,7 +7,7 @@
 mapThingFoI(foiDf)
 }
 \arguments{
-\item{foiDf}{Data frame with class "mapThing"}
+\item{foiDf}{Data frame with class "thingFoI" and "mapThing"}
 }
 \value{
 A list object containing information from url/FeaturesOfInterest

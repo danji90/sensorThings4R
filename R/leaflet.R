@@ -1,6 +1,6 @@
 #' @title Display SensorThing locations on a map
 #' @description Creates markers from "thingLocation" objects and loads them onto a Leaflet map
-#' @param locDf Data frame with class "thingLocations"
+#' @param locDf Data frame with class "thingLocations" and "mapThing"
 #' @return A list object containing information from url/Things
 #' @export
 #' @importFrom dplyr %>%
@@ -10,11 +10,11 @@
 #'mapThingLocations(y)
 
 mapThingLocations = function(locDf){
-  if (inherits(locDf,"mapThing")){
+  if (class(locDf)[2] == "thingLocation" & class(locDf)[3] == "mapThing"){
     map <- leaflet::leaflet(data=locDf) %>% leaflet::addTiles() %>% leaflet::addCircleMarkers(radius = 8, color = "blue", fillOpacity = 0.6, ~long, ~lat, popup = ~as.character(address), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
-    stop("This is not a mapThing object")
+    stop("This is not a mapThing and/or thingLocation object")
   }
 
 }
@@ -44,7 +44,7 @@ expressMapLocations = function(url){
 
 #' @title Display SensorThing Features of Interest on a map
 #' @description Creates markers from "mapThing" objects and loads them onto a Leaflet map
-#' @param foiDf Data frame with class "mapThing"
+#' @param foiDf Data frame with class "thingFoI" and "mapThing"
 #' @return A list object containing information from url/FeaturesOfInterest
 #' @export
 #' @examples
@@ -53,11 +53,11 @@ expressMapLocations = function(url){
 #'mapThingFoI(y)
 
 mapThingFoI = function(foiDf){
-  if (inherits(foiDf,"mapThing")){
+  if (class(foiDf)[2] == "thingFoI" & class(foiDf)[3] == "mapThing"){
     map <- leaflet::leaflet(data=foiDf) %>% leaflet::addTiles() %>% leaflet::addCircleMarkers(radius = 8, color = "red", fillOpacity = 0.6, ~long, ~lat, popup = ~as.character(name), layerId=~id, clusterOptions = leaflet::markerClusterOptions())
     return(map)
   } else {
-    stop("This is not a mapThing object")
+    stop("This is not a mapThing and/or thingFoI object")
   }
 }
 

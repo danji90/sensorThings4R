@@ -7,7 +7,7 @@
 mapThingLocations(locDf)
 }
 \arguments{
-\item{locDf}{Data frame with class "thingLocations"}
+\item{locDf}{Data frame with class "thingLocations" and "mapThing"}
 }
 \value{
 A list object containing information from url/Things

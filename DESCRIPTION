@@ -9,7 +9,7 @@ Description: SensorThings4R contains a set of functions to easily access, proces
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports: jsonlite, leaflet, shiny, dplyr, 
+Imports: jsonlite, leaflet, shiny, dplyr, methods
 Suggests: knitr,rmarkdown, kableExtra
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr

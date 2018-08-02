@@ -124,10 +124,11 @@ mapThingFoI(k)
 &nbsp;
 &nbsp;
 
-The methods only accept objects of the class they are designed for. An error message will indicate that the object does not have the right class and can't be mapped.
+The methods only accept objects of the classes they are designed for. An error message will indicate that the object does not have the right classes and can't be mapped.
 
 ```{r,error=TRUE}
 mapThingFoI(j)
+class(j)
 ```
 
 
