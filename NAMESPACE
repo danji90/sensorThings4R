@@ -3,6 +3,8 @@
 export(expressMapFoI)
 export(expressMapLocations)
 export(getLocationThings)
+export(getStreamObservations)
+export(getThingDatastreams)
 export(makeThingFoI)
 export(makeThingLocation)
 export(mapThingFoI)
