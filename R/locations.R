@@ -46,10 +46,10 @@ makeThingLocation = function(locationDF){
   coords = data.frame(coords)
 
   # Define data columns
-  id = locationDF[1]
-  selfLink = locationDF[2]
+  id = locationDF["@iot.id"]
+  selfLink = locationDF["@iot.selfLink"]
   featureType = locationDF$location$type
-  address =locationDF[4]
+  address =locationDF["name"]
 
   # Create new object with data columns
   locObj = data.frame(id, address, selfLink, featureType, coords$X1, coords$X2, stringsAsFactors = FALSE)
