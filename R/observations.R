@@ -27,31 +27,31 @@ getThingDatastreams = function(url, thingID){
   return(streams)
 }
 
-#' @title Load datastreams and observations into R
+#' @title Filter observations by StreamId and time interval and store them in a dataframe
 #' @description This function parses Thing SensorThings JSON data and stores it in an R data frame. Contains the complete Thing data for further processing.
-#' @param url A SensorThings API base url (string!), a thing Id
-#' @return A "streamObject" dataframe containing data from url/Thing(id)/Datastreams
+#' @param url A SensorThings API base url (string!)
+#' @return A "obsObject" dataframe containing data from url/Datastreams(id)/Observations
 #' @export
 #' @examples
-#' x = getThingDatastreams("http://elcano.init.uji.es:8082/FROST-Server/v1.0", 1)
+#' x = filterObservations("http://elcano.init.uji.es:8082/FROST-Server/v1.0", 1, "2018-11-29T00:45:45.842Z", "2018-11-29T05:02:05.445Z")
 #' x
-#'\dontrun{
-#'v = getThingDatastreams("https://tasking-test.sensorup.com/v1.0", 1)
-#'v
 
-getStreamObservations = function(url, streamID){
-
+filterObservations = function(url, streamID, startTime, endTime){
   streamsExt = paste0("Datastreams(", as.character(streamID), ")")
-  obsExt = "Observations?$select=resultTime,result"
-  obsUrl = paste0(url, "/", streamsExt, "/", obsExt)
+  obsExt = "Observations"
+  selectExt = "?$select=phenomenonTime,result"
+  filter = paste0("&$filter=overlaps(phenomenonTime,", as.character(startTime), "/", as.character(endTime), ")")
+  obsUrl = paste0(url, "/", streamsExt, "/", obsExt, selectExt, filter)
   print(obsUrl)
 
 
   obsJSON = jsonlite::fromJSON(obsUrl)
   observations = obsJSON$value
+  print(observations)
+  formatObs = data.frame("phenomenonTime"=anytime(observations$phenomenonTime), "result"=observations$result)
 
-  # Add class "streamObject"
-  class(observations) = append(class(observations), "obsObject")
+  # Add class "obsObject"
+  class(formatObs) = append(class(formatObs), "obsObject")
 
-  return(observations)
+  return(formatObs)
 }
