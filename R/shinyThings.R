@@ -63,26 +63,26 @@ shinyThings = function(){
       shiny::observeEvent(input$sensorMap_marker_click, {
         markerId = input$sensorMap_marker_click$id
         locThings = getLocationThings(userInput(), input$sensorMap_marker_click$id)
-        print(locThings[1,1])
+        print(locThings[1, "@iot.id"])
 
         output$locationCoords = shiny::renderText({
           paste(toString(input$sensorMap_marker_click$lat), "/", toString(input$sensorMap_marker_click$lng))
         })
 
         output$thingId = shiny::renderText({
-          toString(locThings[1,1])
+          toString(locThings[1, "@iot.id"])
         })
 
         output$thingDescription = shiny::renderText({
-          toString(locThings[1,3])
+          toString(locThings[1,"description"])
         })
 
         output$thingName = shiny::renderText({
-          toString(locThings[1,4])
+          toString(locThings[1,"name"])
         })
 
         output$thingSelfLink = shiny::renderText({
-          toString(locThings[1,2])
+          toString(locThings[1,"@iot.selfLink"])
         })
       })
     }
