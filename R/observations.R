@@ -48,9 +48,9 @@ filterObservations = function(url, streamID, startTime, endTime){
   obsJSON = jsonlite::fromJSON(obsUrl)
   observations = obsJSON$value
   print(observations)
-  formatObs = data.frame("phenomenonTime"=anytime(observations$phenomenonTime), "result"=observations$result)
+  formatObs = data.frame("phenomenonTime"=anytime::anytime(observations$phenomenonTime), "result"=observations$result)
 
-  # Add class "obsObject"
+  # Assign object class
   class(formatObs) = append(class(formatObs), "obsObject")
 
   return(formatObs)
