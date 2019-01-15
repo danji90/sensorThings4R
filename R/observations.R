@@ -48,27 +48,32 @@ filterObservations = function(url, streamID, startTime, endTime){
   # Store link for the next 100 values in variable and declare variable for last request
   obsJSON = jsonlite::fromJSON(obsUrl)
   observations = obsJSON$value
-  nextLink = obsJSON$"@iot.nextLink"
-  lastLink = NULL
 
-  # Loop request json using the @iot.nextLink for the follwing 100 values until nextLink == NULL
-  # Store last @iot.nextLink in lastLink to get the final JSON file
-  # Bind results in every loop
-  while (is.null(nextLink) == FALSE)
-  {
-    nextJSON = jsonlite::fromJSON(nextLink)
-    nextValues = nextJSON$value
-    nextLink = nextJSON$"@iot.nextLink"
-    observations = rbind(observations,nextValues)
-    if (is.null(nextLink) == FALSE){
-      lastLink = nextLink
+  # If the dataset is larger than 100 values
+  if (is.null(obsJSON$"@iot.nextLink") == FALSE){
+    nextLink = obsJSON$"@iot.nextLink"
+    lastLink = NULL
+
+    # Loop request json using the @iot.nextLink for the follwing 100 values until nextLink == NULL
+    # Store last @iot.nextLink in lastLink to get the final JSON file
+    # Bind results in every loop
+    while (is.null(nextLink) == FALSE)
+    {
+      nextJSON = jsonlite::fromJSON(nextLink)
+      nextValues = nextJSON$value
+      nextLink = nextJSON$"@iot.nextLink"
+      observations = rbind(observations,nextValues)
+      if (is.null(nextLink) == FALSE){
+        lastLink = nextLink
+      }
+    }
+    if (is.null(lastLink) == FALSE){
+      # Get final JSON file using lastLink and bind result
+      lastJSON = jsonlite::fromJSON(lastLink)
+      lastValues = lastJSON$value
+      observations = rbind(observations,lastValues)
     }
   }
-
-  # Get final JSON file using lastLink and bind result
-  lastJSON = jsonlite::fromJSON(lastLink)
-  lastValues = lastJSON$value
-  observations = rbind(observations,lastValues)
 
   formatObs = data.frame("phenomenonTime"=anytime::anytime(observations$phenomenonTime), "result"=observations$result)
 
