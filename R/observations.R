@@ -39,19 +39,29 @@ getThingDatastreams = function(url, thingID){
 filterObservations = function(url, streamID, startTime, endTime){
   streamsExt = paste0("Datastreams(", as.character(streamID), ")")
   obsExt = "Observations"
-  selectExt = "?$select=phenomenonTime,result"
+  selectExt = "?$skip=4000&$select=phenomenonTime,result"
   filter = paste0("&$filter=overlaps(phenomenonTime,", as.character(startTime), "/", as.character(endTime), ")")
   obsUrl = paste0(url, "/", streamsExt, "/", obsExt, selectExt, filter)
   print(obsUrl)
 
-
   obsJSON = jsonlite::fromJSON(obsUrl)
   observations = obsJSON$value
+  nextLink = obsJSON$"@iot.nextLink"
+  print(nextLink)
+
+  while (is.null(nextLink) == FALSE)
+  {
+    nextJSON = jsonlite::fromJSON(nextLink)
+    nextValues = nextJSON$value
+    nextLink = nextJSON$"@iot.nextLink"
+    print(nextLink)
+    observations = c(observations, nextValues)
+  }
   print(observations)
-  formatObs = data.frame("phenomenonTime"=anytime::anytime(observations$phenomenonTime), "result"=observations$result)
+  # formatObs = data.frame("phenomenonTime"=anytime::anytime(observations$phenomenonTime), "result"=observations$result)
 
   # Assign object class
-  class(formatObs) = append(class(formatObs), "obsObject")
+  # class(formatObs) = append(class(formatObs), "obsObject")
 
-  return(formatObs)
+  return(observations)
 }
