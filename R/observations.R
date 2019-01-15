@@ -39,29 +39,41 @@ getThingDatastreams = function(url, thingID){
 filterObservations = function(url, streamID, startTime, endTime){
   streamsExt = paste0("Datastreams(", as.character(streamID), ")")
   obsExt = "Observations"
-  selectExt = "?$skip=4000&$select=phenomenonTime,result"
+  selectExt = "?$select=phenomenonTime,result"
   filter = paste0("&$filter=overlaps(phenomenonTime,", as.character(startTime), "/", as.character(endTime), ")")
   obsUrl = paste0(url, "/", streamsExt, "/", obsExt, selectExt, filter)
-  print(obsUrl)
+  cat("Request URL: ", obsUrl)
 
+  # Create data frame with first 100 values (this is the maximum size a SensorThings request will get)
+  # Store link for the next 100 values in variable and declare variable for last request
   obsJSON = jsonlite::fromJSON(obsUrl)
   observations = obsJSON$value
   nextLink = obsJSON$"@iot.nextLink"
-  print(nextLink)
+  lastLink = NULL
 
+  # Loop request json using the @iot.nextLink for the follwing 100 values until nextLink == NULL
+  # Store last @iot.nextLink in lastLink to get the final JSON file
+  # Bind results in every loop
   while (is.null(nextLink) == FALSE)
   {
     nextJSON = jsonlite::fromJSON(nextLink)
     nextValues = nextJSON$value
     nextLink = nextJSON$"@iot.nextLink"
-    print(nextLink)
-    observations = c(observations, nextValues)
+    observations = rbind(observations,nextValues)
+    if (is.null(nextLink) == FALSE){
+      lastLink = nextLink
+    }
   }
-  print(observations)
-  # formatObs = data.frame("phenomenonTime"=anytime::anytime(observations$phenomenonTime), "result"=observations$result)
+
+  # Get final JSON file using lastLink and bind result
+  lastJSON = jsonlite::fromJSON(lastLink)
+  lastValues = lastJSON$value
+  observations = rbind(observations,lastValues)
+
+  formatObs = data.frame("phenomenonTime"=anytime::anytime(observations$phenomenonTime), "result"=observations$result)
 
   # Assign object class
-  # class(formatObs) = append(class(formatObs), "obsObject")
+  class(formatObs) = append(class(formatObs), "obsObject")
 
-  return(observations)
+  return(formatObs)
 }
