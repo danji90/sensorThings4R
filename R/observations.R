@@ -40,7 +40,7 @@ filterObservations = function(url, streamID, startTime, endTime){
   streamsExt = paste0("Datastreams(", as.character(streamID), ")")
   obsExt = "Observations"
   selectExt = "?$select=phenomenonTime,result"
-  filter = paste0("&$filter=overlaps(phenomenonTime,", as.character(startTime), "/", as.character(endTime), ")")
+  filter = paste0("&$filter=phenomenonTime%20gt%20", as.character(startTime), "%20and%20phenomenonTime%20lt%20", as.character(endTime))
   obsUrl = paste0(url, "/", streamsExt, "/", obsExt, selectExt, filter)
   cat("Request URL: ", obsUrl)
 
